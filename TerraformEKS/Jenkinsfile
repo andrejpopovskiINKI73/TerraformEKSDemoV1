@@ -6,17 +6,22 @@ pipeline {
     stages{
         stage('Git repo'){
             steps{
-                git credentialsId: 'Github', url: 'https://github.com/andrejpopovskiINKI73/TerraformEKSDemoV1/tree/master/TerraformEKS'
+                checkout scmGit(branches: [[name: '*/master']], extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: '/TerraformEKS']]]], userRemoteConfigs: [[url: 'https://github.com/andrejpopovskiINKI73/TerraformEKSDemoV1.git']])
             }
         }
         stage('Terraform init'){
             steps{
-                powershell 'terraform init'
+                dir('TerraformEKS') {
+                    powershell 'terraform init'
+                }
             }
         }
         stage('Terraform apply'){
             steps{
-                powershell 'terraform apply --auto-apporve'
+                dir('TerraformEKS') {
+                    powershell 'terraform apply --auto-approve'
+                }
+                
             }
         }
     }
