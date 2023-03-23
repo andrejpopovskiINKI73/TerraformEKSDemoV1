@@ -1,8 +1,9 @@
 pipeline {
     agent any
     tools {
-      terraform 'Terraform-1'
+      terraform 'Terraform'
     }
+
     stages{
         stage('Git repo'){
             steps{
@@ -12,14 +13,14 @@ pipeline {
         stage('Terraform init'){
             steps{
                 dir('TerraformEKS') {
-                    powershell 'terraform init'
+                    sh 'terraform init'
                 }
             }
         }
         stage('Terraform apply'){
             steps{
                 dir('TerraformEKS') {
-                    powershell 'terraform apply --auto-approve'
+                    sh 'terraform apply --auto-approve'
                 }
                 
             }
