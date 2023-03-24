@@ -18,21 +18,21 @@ pipeline {
         stage('Terraform init'){
             steps{
                 dir('TerraformEKS') {
-                    powershell "terraform init"
+                    powershell 'terraform init'
                 }
             }
         }
         stage('Validate'){
                 steps{
                     dir('TerraformEKS') {
-                        powershell "terraform validate"
+                        powershell 'terraform validate'
                     }
                 }
             }
         stage('Terraform action'){
             steps{
                 dir('TerraformEKS') {
-                    powershell "terraform ${params.Actions} --auto-approve"
+                    powershell 'terraform ${params.Actions} --auto-approve'
                     //powershell 'terraform apply --auto-approve'
                 }
                 
@@ -40,7 +40,7 @@ pipeline {
         }
         stage('Terraform end'){
             steps{
-                echo "terraform ${params.Actions} was executed"
+                echo 'terraform ${params.Actions} was executed'
             }
         }
     }
