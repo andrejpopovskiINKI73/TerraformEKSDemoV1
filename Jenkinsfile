@@ -3,6 +3,11 @@ pipeline {
     tools {
       terraform 'Terraform-1'
     }
+    parameters{
+            choice(
+                choices:['plan','apply','destroy'],
+                name:'Actions',
+                description: 'Describes the Actions')
 
     stages{
         stage('Git repo'){
@@ -13,16 +18,29 @@ pipeline {
         stage('Terraform init'){
             steps{
                 dir('TerraformEKS') {
-                    powershell 'terraform init'
+                    powershell "terraform init"
                 }
             }
         }
-        stage('Terraform apply'){
+        stage('Validate'){
+                steps{
+                    dir('TerraformEKS') {
+                        powershell "terraform validate"
+                    }
+                }
+            }
+        stage('Terraform action'){
             steps{
                 dir('TerraformEKS') {
-                    powershell 'terraform apply --auto-approve'
+                    powershell "terraform ${params.Actions} --auto-approve"
+                    //powershell 'terraform apply --auto-approve'
                 }
                 
+            }
+        }
+        stage('Terraform action'){
+            steps{
+                echo "terraform ${params.Actions} was executed"
             }
         }
     }
