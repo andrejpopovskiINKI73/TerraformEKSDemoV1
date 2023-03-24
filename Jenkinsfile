@@ -33,7 +33,7 @@ pipeline {
             stages{
                 stage('Terraform plan'){
                      when {
-                            expression{${params.Actions} == 'plan'}
+                            expression{params.Actions == 'plan'}
                         }
                     steps{
                         dir('TerraformEKS') {
@@ -43,7 +43,7 @@ pipeline {
                 }
                 stage('Terraform apply'){
                      when {
-                            expression{${params.Actions} == 'apply'}
+                            expression{params.Actions == 'apply'}
                         }
                     steps{
                         dir('TerraformEKS') {
@@ -53,7 +53,7 @@ pipeline {
                 }
                 stage('Terraform destroy'){
                      when {
-                            expression{${params.Actions} == 'destroy'}
+                            expression{params.Actions == 'destroy'}
                         }
                     steps{
                         dir('TerraformEKS') {
