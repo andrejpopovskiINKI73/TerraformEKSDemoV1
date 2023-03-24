@@ -65,7 +65,7 @@ pipeline {
         }
         stage('Terraform end'){
             steps{
-                echo 'terraform ${params.Actions} was executed'
+                echo "terraform ${params.Actions} was executed"
             }
         }
     }
