@@ -8,7 +8,7 @@ pipeline {
                 choices:['plan','apply','destroy'],
                 name:'Actions',
                 description: 'Describes the Actions')
-
+    }
     stages{
         stage('Git repo'){
             steps{
