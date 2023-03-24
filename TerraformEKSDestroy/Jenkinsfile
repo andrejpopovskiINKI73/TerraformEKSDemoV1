@@ -10,14 +10,7 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/localAWSProvider']], extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: '/TerraformEKS']]]], userRemoteConfigs: [[url: 'https://github.com/andrejpopovskiINKI73/TerraformEKSDemoV1.git']])
             }
         }
-        stage('Terraform init'){
-            steps{
-                dir('TerraformEKS') {
-                    powershell 'terraform init'
-                }
-            }
-        }
-        stage('Terraform apply'){
+        stage('Terraform destroy'){
             steps{
                 dir('TerraformEKS') {
                     powershell 'terraform destroy --auto-approve'
