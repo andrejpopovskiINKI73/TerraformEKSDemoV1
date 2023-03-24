@@ -20,8 +20,7 @@ pipeline {
         stage('Terraform apply'){
             steps{
                 dir('TerraformEKS') {
-                    powershell 'terraform plan'
-                    //sh 'terraform apply --auto-approve'
+                    powershell 'terraform apply --auto-approve'
                 }
                 
             }
