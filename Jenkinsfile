@@ -32,7 +32,7 @@ pipeline {
         stage('Terraform action'){
             steps{
                 dir('TerraformEKS') {
-                    powershell 'terraform ${params.Actions}'
+                    powershell "terraform ${params.Actions}"
                     //powershell 'terraform apply --auto-approve'
                 }
                 
