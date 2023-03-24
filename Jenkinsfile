@@ -30,12 +30,37 @@ pipeline {
                 }
             }
         stage('Terraform action'){
-            steps{
-                dir('TerraformEKS') {
-                    powershell "terraform ${params.Actions}"
-                    //powershell 'terraform apply --auto-approve'
+            stages{
+                stage('Terraform plan'){
+                     when {
+                            expression(${params.Actions} == 'plan')
+                        }
+                    steps{
+                        dir('TerraformEKS') {
+                            powershell "terraform ${params.Actions}"
+                        }
+                    }
                 }
-                
+                stage('Terraform apply'){
+                     when {
+                            expression(${params.Actions} == 'apply')
+                        }
+                    steps{
+                        dir('TerraformEKS') {
+                            powershell "terraform ${params.Actions} --auto-approve"
+                        }
+                    }
+                }
+                stage('Terraform destroy'){
+                     when {
+                            expression(${params.Actions} == 'destroy')
+                        }
+                    steps{
+                        dir('TerraformEKS') {
+                            powershell "terraform ${params.Actions} --auto-approve"
+                        }
+                    }
+                }
             }
         }
         stage('Terraform end'){
