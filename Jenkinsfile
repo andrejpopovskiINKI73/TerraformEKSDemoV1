@@ -12,7 +12,7 @@ pipeline {
     stages{
         stage('Git repo'){
             steps{
-                checkout scmGit(branches: [[name: '*/localAWSProvider']], extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: '/TerraformEKS']]]], userRemoteConfigs: [[url: 'https://github.com/andrejpopovskiINKI73/TerraformEKSDemoV1.git']])
+                checkout scmGit(branches: [[name: '*/terrActions']], extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: '/TerraformEKS']]]], userRemoteConfigs: [[url: 'https://github.com/andrejpopovskiINKI73/TerraformEKSDemoV1.git']])
             }
         }
         stage('Terraform init'){
@@ -48,6 +48,8 @@ pipeline {
                     steps{
                         dir('TerraformEKS') {
                             powershell "terraform ${params.Actions} --auto-approve"
+                            //replace the kube config file locally with the tf output, so we can execute kubectl commands locally for the cluster
+                            powershell "terraform output -raw kubeconfig > $HOME/.kube/config"
                         }
                     }
                 }
