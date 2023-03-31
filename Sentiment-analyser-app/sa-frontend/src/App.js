@@ -20,7 +20,7 @@ class App extends Component {
     };
 
     analyzeSentence() {
-        fetch('http://172.25.105.211:31337/sentiment', {
+        fetch('http://172.25.105.211:31337/sentiment', { //change this with sa-frontend-lb endpoint!
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

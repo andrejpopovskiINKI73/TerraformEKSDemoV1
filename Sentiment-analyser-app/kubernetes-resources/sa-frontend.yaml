@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment                                          # 1
+kind: Deployment
 metadata:
   name: sa-frontend
   labels:
@@ -8,34 +8,34 @@ spec:
   selector:
     matchLabels:
       app: sa-frontend
-  replicas: 2                                             # 2
+  replicas: 2
   minReadySeconds: 15
   strategy:
-    type: RollingUpdate                                   # 3
+    type: RollingUpdate
     rollingUpdate: 
-      maxUnavailable: 1                                   # 4
-      maxSurge: 1                                         # 5
+      maxUnavailable: 1
+      maxSurge: 1
   template:
     metadata:
       labels:
-        app: sa-frontend                                  # 6
+        app: sa-frontend
     spec:
       containers:
-        - image: andrejpopovski123/sentiment-analysis-frontend:minikube 
-          imagePullPolicy: Always                         # 7
+        - image: andrejpopovski123/sentiment-analysis-frontend:minikube
+          imagePullPolicy: Always
           name: sa-frontend
           ports:
             - containerPort: 80
 ---
 apiVersion: v1
-kind: Service              # 1
+kind: Service
 metadata:
   name: sa-frontend-lb
 spec:
-  type: LoadBalancer       # 2
+  type: LoadBalancer
   ports:
-  - port: 80               # 3
-    protocol: TCP          # 4
-    targetPort: 80         # 5
-  selector:                # 6
-    app: sa-frontend       # 7
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: sa-frontend
