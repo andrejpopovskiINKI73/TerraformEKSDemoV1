@@ -18,7 +18,7 @@ pipeline {
     stages{
         stage('Git repo'){
             steps{
-                checkout scmGit(branches: [[name: '*/terrActions']], extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: '/TerraformEKS']]]], userRemoteConfigs: [[url: 'https://github.com/andrejpopovskiINKI73/TerraformEKSDemoV1.git']])
+                checkout scmGit(branches: [[name: '*/dev']], extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: '/TerraformEKS']]]], userRemoteConfigs: [[url: 'https://github.com/andrejpopovskiINKI73/TerraformEKSDemoV1.git']])
             }
         }
         stage('Terraform init'){
