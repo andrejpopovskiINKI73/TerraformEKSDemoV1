@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "express": "^4.18.2",
     "material-ui": "^0.20.0",
+    "prop-types": "latest",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "^1.0.17",
-    "prop-types": "latest"
+    "react-scripts": "^2.1.8"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -18,5 +19,11 @@
   "main": "index.js",
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

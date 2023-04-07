@@ -5,6 +5,9 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import Polarity from "./components/Polarity";
+import { Config } from './config';
+
+console.log(Config.api_url)
 
 const style = {
     marginLeft: 12,
@@ -20,7 +23,7 @@ class App extends Component {
     };
 
     analyzeSentence() {
-        fetch('http://172.25.105.211:31337/sentiment', { //change this with sa-frontend-lb endpoint!
+        fetch(Config.api_url, { //this is for sa-web-app-lb service endpoint!
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
