@@ -109,16 +109,17 @@ pipeline {
                         }
                         stage('webapp to k8s deploy'){
                             steps{
-                                kubeconfig(credentialsId: 'mykubeconfig', serverUrl: '') {
+                                kubeconfig(caCertificate: 'LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMvakNDQWVhZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJek1ETXlPREF4TkRFd05sb1hEVE16TURNeU5UQXhOREV3Tmxvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBS01GClUwcmFmV3l0VzVqQXNlbHpET2t4M21UWHJ2bzRJVGk3dXo4QjJEV25wR2h3OEpMd2hxTTUyaW5uRFg2dkhYbmwKNC96L1hNRXdxNUkxQTRiYmh1blhpaVcrRFJGMHZKY3ppZGVYWjA4enhZdUFlTUZpZDlubElUaDhwUHhxWi9nWgp1MmhUUGt4SDNNNzEyM0lwYmtLMERjdkt5ZUlFNzdJdUhRaUNibGI4eU53RW5BcnM1Z0JhbHlmSDZjMFpjODF5CnZlb3VteVJlL3BxaFBsRCtDdXlLMWdvdkM4MjVmSlVoK0FUNjV2V0FyRnYrUDVldFMwZEdvTmVUT0NIcVArMFoKaG82dy84WSt2OXVpYzhtSmNOS0FpY1dqa2xPUDRIYlVhVmZLNnZHZnVFb3pKM1RkcExsWVpkdmwyVWc5WXlOSAp4d25MOUJPZ1psd2FzWVBZWWZVQ0F3RUFBYU5aTUZjd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZNYnZZR1JaRzFDMnBCUktmTFErK0Q3czJuRldNQlVHQTFVZEVRUU8KTUF5Q0NtdDFZbVZ5Ym1WMFpYTXdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBRFR4SEhURE1ITzgvM0xyeWEvaQpVYm5yT2hBUEZVaGl3ZFl3ZjhRNmlwZmJVWnVlOGt4ZTJJdnpENUZjdWlLUGRRblFTdG1PWEZLTDBrU1QwSEw2CjdjL1RVMGJpc0RyRnoxVWNDNVc2bmtwcGhoS0cyNFU5L2ZYU1kwQ2ZWWUZzcGkzaXRpS0ozTnR0Yzdhd2xOOW0KRDlvYzR6Z0NxMnc5LzhYQmp0QmhlMkdwNWlVb0hCc2lUZ1dYZ25oNmorZ1dCOCtwYlBnYlNBdk5lZnRDT2srSgpaVi9GRzRUOFA2dWNuTWJLSFhJNmJWaWE0UUJtb3pYUFpxV1M0UUliRHI1YkhGUmxVTnQrVk9DOUg4MlRHRjFWCjZVZEpSZ0lEV3F4aVhOcnhXNk9zdDdsc0RlL2puRkFITHVXNmlnN1ZaZ1YyNHJhcmE2eHFHNEczK2dBQllZVW0KZ3drPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==', credentialsId: 'mykubeconfig', serverUrl: '') {
                                     kubernetesDeploy(
                                     configs: 'sa-webapp.yaml',
                                     kubeconfigId: 'mykubeconfig',
                                     enableConfigSubstitution: true
-                                )
-                                sleep(time: 60, unit: SECONDS)
+                                    )
                                 }
+                                sleep(time: 60, unit: SECONDS)
                             }
                         }
+                        
                         
                     }
                 }
