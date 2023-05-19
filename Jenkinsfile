@@ -109,14 +109,12 @@ pipeline {
                         }
                         stage('webapp to k8s deploy'){
                             steps{
-                                dir('Sentiment-analyser-app/kubernetes-resources'){
-                                    kubernetesDeploy(
-                                            configs: 'sa-webapp.yaml',
-                                            kubeconfigId: 'mykubeconfig',
-                                            enableConfigSubstitution: true
-                                        )
-                                    sleep(time: 60, unit: SECONDS)
-                                }
+                                kubernetesDeploy(
+                                        configs: 'Sentiment-analyser-app/kubernetes-resources/sa-webapp.yaml',
+                                        kubeconfigId: 'mykubeconfig',
+                                        enableConfigSubstitution: true
+                                    )
+                                sleep(time: 60, unit: SECONDS)
                             }
                         }
                     }
@@ -153,7 +151,7 @@ pipeline {
                         }
                         stage('frontend to k8s deploy'){
                             steps{
-                                dir('Sentiment-analyser-app/kubernetes-resources'){
+                                dir('Sentiment-analyser-app/kubernetes-resources/'){
                                     kubernetesDeploy(
                                             configs: 'sa-frontend.yaml',
                                             kubeconfigId: 'mykubeconfig',
@@ -169,7 +167,7 @@ pipeline {
                     stages{
                         stage('python pip install'){
                             steps{
-                                dir('Sentiment-analyser-app/sa-logic/sa'){
+                                dir('Sentiment-analyser-app/sa-logic/sa/'){
                                     powershell "python -m pip install -r requirements.txt"
                                     powershell "python -m textblob.download_corpora"
                                 }
@@ -194,7 +192,7 @@ pipeline {
                         }
                         stage('logic to k8s deploy'){
                             steps{
-                                dir('Sentiment-analyser-app/kubernetes-resources'){
+                                dir('Sentiment-analyser-app/kubernetes-resources/'){
                                     kubernetesDeploy(
                                             configs: 'sa-logic.yaml',
                                             kubeconfigId: 'mykubeconfig',
