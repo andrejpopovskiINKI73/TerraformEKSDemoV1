@@ -109,12 +109,14 @@ pipeline {
                         }
                         stage('webapp to k8s deploy'){
                             steps{
-                                kubernetesDeploy(
+                                kubeconfig(credentialsId: 'mykubeconfig', serverUrl: '') {
+                                    kubernetesDeploy(
                                     configs: 'sa-webapp.yaml',
                                     kubeconfigId: 'mykubeconfig',
                                     enableConfigSubstitution: true
                                 )
                                 sleep(time: 60, unit: SECONDS)
+                                }
                             }
                         }
                         
