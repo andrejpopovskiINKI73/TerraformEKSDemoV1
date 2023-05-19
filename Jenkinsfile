@@ -107,6 +107,14 @@ pipeline {
                                 }
                             }
                         }
+                        stage('webapp to k8s deploy'){
+                            steps{
+                                dir('Sentiment-analyser-app/kubernetes-resources'){
+                                    powershell 'kubectl apply -f ./sa-webapp.yaml'
+                                    sleep(time: 60, unit: SECONDS) //wait time for the webapp deplyment/service to become available
+                                }
+                            }
+                        }
                     }
                 }
                 stage('Sa-frontend'){
@@ -117,6 +125,7 @@ pipeline {
                                     powershell "npm install"
                                     //FOR NOW WE BUILD AND PUSH THE DOCKER IMAGE WITH THE WEBAPP URL WE GET FROM MINIKUBE, IT WILL NEED TO BE SETUP DIFFERENTLY FOR ON CLOUD
                                     powershell '$env:test = minikube service sa-web-app-lb --url ; "window.API_URL = \'$env:test/sentiment\'" > ./public/config.js'
+                                    sleep(time: 30, unit: SECONDS)
                                     powershell "npm run build"
                                 }
                             }
@@ -136,6 +145,12 @@ pipeline {
                                         powershell "docker push andrejpopovski123/sentiment-analysis-frontend"
                                     }
                                 }
+                            }
+                        }
+                        stage('frontend to k8s deploy'){
+                            steps{
+                                powershell 'kubectl apply -f ./sa-frontend.yaml'
+                                sleep(time: 60, unit: SECONDS) //wait time for the frontend deplyment/service to become available
                             }
                         }
                     }
@@ -167,11 +182,18 @@ pipeline {
                                 }
                             }
                         }
+                        stage('frontend to k8s deploy'){
+                            steps{
+                                powershell 'kubectl apply -f ./sa-logic.yaml'
+                                sleep(time: 60, unit: SECONDS) //wait time for the logic deplyment/service to become available
+                            }
+                        }
                     }
                 }
                 stage('Image build completion'){
                     steps{
                         powershell "echo The images for the apps were built and pushed to dockerhub!"
+                        powershell "echo Deplyment to k8s was successful!"
                     }
                 }
             }
