@@ -108,12 +108,14 @@ pipeline {
                             }
                         }
                         stage('webapp to k8s deploy'){
-                            kubernetesDeploy(
+                            steps{
+                                kubernetesDeploy(
                                     configs: 'Sentiment-analyser-app/kubernetes-resources/sa-webapp.yaml',
                                     kubeconfigId: 'mykubeconfig',
                                     enableConfigSubstitution: true
                                 )
-                            sleep(time: 60, unit: SECONDS)
+                                sleep(time: 60, unit: SECONDS)
+                            }
                         }
                         
                     }
