@@ -81,35 +81,6 @@ pipeline {
                 expression {env.BuildDockerImages == 'true'}
             }
             stages {
-                stage('Sa-frontend'){
-                    stages{
-                        stage('npm build'){
-                            steps{
-                                dir('Sentiment-analyser-app/sa-frontend/'){
-                                    powershell "npm install"
-                                    powershell "npm run build"
-                                }
-                            }
-                        }
-                        stage('docker build'){
-                            steps{
-                                dir('Sentiment-analyser-app/sa-frontend/'){
-                                    powershell "docker build -f Dockerfile -t andrejpopovski123/sentiment-analysis-frontend ."
-                                }
-                            }
-                        }
-                        stage('docker push'){
-                            steps{
-                                dir('Sentiment-analyser-app/sa-frontend/'){
-                                    withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-                                        powershell "docker login --username andrejpopovski123 --password ${dockerhubpwd}"
-                                        powershell "docker push andrejpopovski123/sentiment-analysis-frontend"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
                 stage('Sa-webapp'){
                     stages{
                         stage('java build'){
@@ -132,6 +103,37 @@ pipeline {
                                     withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
                                         powershell "docker login --username andrejpopovski123 --password ${dockerhubpwd}"
                                         powershell "docker push andrejpopovski123/sentiment-analysis-webapp"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                stage('Sa-frontend'){
+                    stages{
+                        stage('npm build'){
+                            steps{
+                                dir('Sentiment-analyser-app/sa-frontend/'){
+                                    powershell "npm install"
+                                    //FOR NOW WE BUILD AND PUSH THE DOCKER IMAGE WITH THE WEBAPP URL WE GET FROM MINIKUBE, IT WILL NEED TO BE SETUP DIFFERENTLY FOR ON CLOUD
+                                    powershell '$env:test = minikube service sa-web-app-lb --url ; "window.API_URL = \'$env:test/sentiment\'" > ./public/config.js'
+                                    powershell "npm run build"
+                                }
+                            }
+                        }
+                        stage('docker build'){
+                            steps{
+                                dir('Sentiment-analyser-app/sa-frontend/'){
+                                    powershell "docker build -f Dockerfile -t andrejpopovski123/sentiment-analysis-frontend ."
+                                }
+                            }
+                        }
+                        stage('docker push'){
+                            steps{
+                                dir('Sentiment-analyser-app/sa-frontend/'){
+                                    withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
+                                        powershell "docker login --username andrejpopovski123 --password ${dockerhubpwd}"
+                                        powershell "docker push andrejpopovski123/sentiment-analysis-frontend"
                                     }
                                 }
                             }

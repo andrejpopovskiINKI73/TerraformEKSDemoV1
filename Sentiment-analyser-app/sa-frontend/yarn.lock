@@ -2907,11 +2907,6 @@
   "resolved" "https://registry.npmjs.org/commander/-/commander-2.20.3.tgz"
   "version" "2.20.3"
 
-"commander@^4.0.0":
-  "integrity" "sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA=="
-  "resolved" "https://registry.npmjs.org/commander/-/commander-4.1.1.tgz"
-  "version" "4.1.1"
-
 "commander@~2.19.0":
   "integrity" "sha512-6tvAOO+D6OENvRAh524Dh9jcfKTYDQAqvqezbCW82xj5X0pSrcpxtvRKHLG0yBY6SD7PSDrJaj+0AiOcKVd1Xg=="
   "resolved" "https://registry.npmjs.org/commander/-/commander-2.19.0.tgz"
@@ -3119,24 +3114,6 @@
     "semver" "^5.5.0"
     "shebang-command" "^1.2.0"
     "which" "^1.2.9"
-
-"cross-spawn@^7.0.0":
-  "integrity" "sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w=="
-  "resolved" "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.3.tgz"
-  "version" "7.0.3"
-  dependencies:
-    "path-key" "^3.1.0"
-    "shebang-command" "^2.0.0"
-    "which" "^2.0.1"
-
-"cross-spawn@^7.0.3":
-  "integrity" "sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w=="
-  "resolved" "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.3.tgz"
-  "version" "7.0.3"
-  dependencies:
-    "path-key" "^3.1.0"
-    "shebang-command" "^2.0.0"
-    "which" "^2.0.1"
 
 "crypto-browserify@^3.11.0":
   "integrity" "sha512-fz4spIh+znjO2VjL+IdhEpRJ3YN6sMzITSBijk6FK2UvTqruSQW+/cCZTSNsMiZNvUeq0CqurF+dAbyiGOY6Wg=="
@@ -3735,30 +3712,10 @@
   dependencies:
     "is-obj" "^2.0.0"
 
-"dotenv-cli@^7.1.0":
-  "integrity" "sha512-motytjZFQB3ZtGTIN4c0vnFgv4kuNZ2WxVnGY6PVFiygCzkm3IFBBguDUzezd9HgNA0OYYd6vNCWlozs0Q1Zxg=="
-  "resolved" "https://registry.npmjs.org/dotenv-cli/-/dotenv-cli-7.1.0.tgz"
-  "version" "7.1.0"
-  dependencies:
-    "cross-spawn" "^7.0.3"
-    "dotenv" "^16.0.0"
-    "dotenv-expand" "^10.0.0"
-    "minimist" "^1.2.6"
-
-"dotenv-expand@^10.0.0":
-  "integrity" "sha512-GopVGCpVS1UKH75VKHGuQFqS1Gusej0z4FyQkPdwjil2gNIv+LNsqBlboOzpJFZKVT95GkCyWJbBSdFEFUWI2A=="
-  "resolved" "https://registry.npmjs.org/dotenv-expand/-/dotenv-expand-10.0.0.tgz"
-  "version" "10.0.0"
-
 "dotenv-expand@4.2.0":
   "integrity" "sha512-pHWVt6L/YkqbBCMb1hG6e7oO0WdMhlapDIibl+BZ9PncVE3i+G77uvNr8GUxW2ItSituOK8QOYC9oOJjwWD94A=="
   "resolved" "https://registry.npmjs.org/dotenv-expand/-/dotenv-expand-4.2.0.tgz"
   "version" "4.2.0"
-
-"dotenv@^16.0.0", "dotenv@^16.0.3":
-  "integrity" "sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ=="
-  "resolved" "https://registry.npmjs.org/dotenv/-/dotenv-16.0.3.tgz"
-  "version" "16.0.3"
 
 "dotenv@6.0.0":
   "integrity" "sha512-FlWbnhgjtwD+uNLUGHbMykMOYQaTivdHEmYwAKFjn6GKe/CqY0fNae93ZHTd20snh9ZLr8mTzIL9m0APQ1pjQg=="
@@ -3863,14 +3820,6 @@
   "integrity" "sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A=="
   "resolved" "https://registry.npmjs.org/entities/-/entities-2.2.0.tgz"
   "version" "2.2.0"
-
-"env-cmd@^10.1.0":
-  "integrity" "sha512-mMdWTT9XKN7yNth/6N6g2GuKuJTsKMDHlQFUDacb/heQRRWOTIZ42t1rMHnQu4jYxU1ajdTeJM+9eEETlqToMA=="
-  "resolved" "https://registry.npmjs.org/env-cmd/-/env-cmd-10.1.0.tgz"
-  "version" "10.1.0"
-  dependencies:
-    "commander" "^4.0.0"
-    "cross-spawn" "^7.0.0"
 
 "errno@^0.1.3", "errno@~0.1.7":
   "integrity" "sha512-dJ6oBr5SQ1VSd9qkk7ByRgb/1SH4JZjCHSW/mr63/QcXO9zLVxvJ6Oy13nio03rxpSnVDDjFor75SjVeZWPW/A=="
@@ -7699,11 +7648,6 @@
   "resolved" "https://registry.npmjs.org/path-key/-/path-key-2.0.1.tgz"
   "version" "2.0.1"
 
-"path-key@^3.1.0":
-  "integrity" "sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q=="
-  "resolved" "https://registry.npmjs.org/path-key/-/path-key-3.1.1.tgz"
-  "version" "3.1.1"
-
 "path-parse@^1.0.5", "path-parse@^1.0.6", "path-parse@^1.0.7":
   "integrity" "sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw=="
   "resolved" "https://registry.npmjs.org/path-parse/-/path-parse-1.0.7.tgz"
@@ -9583,22 +9527,10 @@
   dependencies:
     "shebang-regex" "^1.0.0"
 
-"shebang-command@^2.0.0":
-  "integrity" "sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA=="
-  "resolved" "https://registry.npmjs.org/shebang-command/-/shebang-command-2.0.0.tgz"
-  "version" "2.0.0"
-  dependencies:
-    "shebang-regex" "^3.0.0"
-
 "shebang-regex@^1.0.0":
   "integrity" "sha512-wpoSFAxys6b2a2wHZ1XpDSgD7N9iVjg29Ph9uV/uaP9Ex/KXlkTZTeddxDPSYQpgvzKLGJke2UU0AzoGCjNIvQ=="
   "resolved" "https://registry.npmjs.org/shebang-regex/-/shebang-regex-1.0.0.tgz"
   "version" "1.0.0"
-
-"shebang-regex@^3.0.0":
-  "integrity" "sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A=="
-  "resolved" "https://registry.npmjs.org/shebang-regex/-/shebang-regex-3.0.0.tgz"
-  "version" "3.0.0"
 
 "shell-quote@1.6.1":
   "integrity" "sha512-V0iQEZ/uoem3NmD91rD8XiuozJnq9/ZJnbHVXHnWqP1ucAhS3yJ7sLIIzEi57wFFcK3oi3kFUC46uSyWr35mxg=="
@@ -10883,13 +10815,6 @@
   "integrity" "sha512-HxJdYWq1MTIQbJ3nw0cqssHoTNU267KlrDuGZ1WYlxDStUtKUhOaJmh112/TZmHxxUfuJqPXSOm7tDyas0OSIQ=="
   "resolved" "https://registry.npmjs.org/which/-/which-1.3.1.tgz"
   "version" "1.3.1"
-  dependencies:
-    "isexe" "^2.0.0"
-
-"which@^2.0.1":
-  "integrity" "sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA=="
-  "resolved" "https://registry.npmjs.org/which/-/which-2.0.2.tgz"
-  "version" "2.0.2"
   dependencies:
     "isexe" "^2.0.0"
 
