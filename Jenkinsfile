@@ -110,7 +110,7 @@ pipeline {
                         stage('webapp to k8s deploy'){
                             steps{
                                 kubernetesDeploy(
-                                    configs: 'Sentiment-analyser-app/kubernetes-resources/sa-webapp.yaml',
+                                    configs: 'sa-webapp.yaml',
                                     kubeconfigId: 'mykubeconfig',
                                     enableConfigSubstitution: true
                                 )
