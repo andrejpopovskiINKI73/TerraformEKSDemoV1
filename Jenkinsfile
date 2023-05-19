@@ -159,7 +159,7 @@ pipeline {
                                         t2tarPt3yNLF9NcxaPrZARNyB2+FGfUAubAAjkIXy60W0+GSQ0IxELHgDYOCGUyx
                                         eM+bsDj072uqmtbClBGopsJfHw5nPXqVltd5QPzoBdcHpCAM2wHJgn7VAeXYD2ng
                                         AhfAq7oBiLn5Eg==''', credentialsId: 'mykubeconfig', serverUrl: 'https://172.25.152.242:8443') {
-                                            powershell '$env:test = minikube service sa-web-app-lb --url ; "window.API_URL = \'$env:test/sentiment\'" > ./public/config.js'
+                                            powershell '$env:test = minikube service sa-web-app-lb --url ; "window.API_URL = \\\'$env:test/sentiment\\\'" > ./public/config.js'
                                         }
                                     sleep(time: 30, unit: 'SECONDS')
                                     powershell "npm run build"
