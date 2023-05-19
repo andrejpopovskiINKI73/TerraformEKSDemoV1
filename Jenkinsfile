@@ -110,8 +110,12 @@ pipeline {
                         stage('webapp to k8s deploy'){
                             steps{
                                 dir('Sentiment-analyser-app/kubernetes-resources'){
-                                    powershell 'kubectl apply -f ./sa-webapp.yaml'
-                                    sleep(time: 60, unit: SECONDS) //wait time for the webapp deplyment/service to become available
+                                    kubernetesDeploy(
+                                            configs: 'sa-webapp.yaml',
+                                            kubeconfigId: 'mykubeconfig',
+                                            enableConfigSubstitution: true
+                                        )
+                                    sleep(time: 60, unit: SECONDS)
                                 }
                             }
                         }
@@ -149,8 +153,14 @@ pipeline {
                         }
                         stage('frontend to k8s deploy'){
                             steps{
-                                powershell 'kubectl apply -f ./sa-frontend.yaml'
-                                sleep(time: 60, unit: SECONDS) //wait time for the frontend deplyment/service to become available
+                                dir('Sentiment-analyser-app/kubernetes-resources'){
+                                    kubernetesDeploy(
+                                            configs: 'sa-frontend.yaml',
+                                            kubeconfigId: 'mykubeconfig',
+                                            enableConfigSubstitution: true
+                                        )
+                                    sleep(time: 60, unit: SECONDS)
+                                }
                             }
                         }
                     }
@@ -182,10 +192,16 @@ pipeline {
                                 }
                             }
                         }
-                        stage('frontend to k8s deploy'){
+                        stage('logic to k8s deploy'){
                             steps{
-                                powershell 'kubectl apply -f ./sa-logic.yaml'
-                                sleep(time: 60, unit: SECONDS) //wait time for the logic deplyment/service to become available
+                                dir('Sentiment-analyser-app/kubernetes-resources'){
+                                    kubernetesDeploy(
+                                            configs: 'sa-logic.yaml',
+                                            kubeconfigId: 'mykubeconfig',
+                                            enableConfigSubstitution: true
+                                        )
+                                    sleep(time: 60, unit: SECONDS)
+                                }
                             }
                         }
                     }
