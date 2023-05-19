@@ -143,7 +143,7 @@ pipeline {
                                     powershell "npm install"
                                     //FOR NOW WE BUILD AND PUSH THE DOCKER IMAGE WITH THE WEBAPP URL WE GET FROM MINIKUBE, IT WILL NEED TO BE SETUP DIFFERENTLY FOR ON CLOUD
                                     powershell '$env:test = minikube service sa-web-app-lb --url ; "window.API_URL = \'$env:test/sentiment\'" > ./public/config.js'
-                                    sleep(time: 30, unit: SECONDS)
+                                    sleep(time: 30, unit: 'SECONDS')
                                     powershell "npm run build"
                                 }
                             }
