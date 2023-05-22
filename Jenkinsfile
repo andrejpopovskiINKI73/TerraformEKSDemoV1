@@ -129,7 +129,7 @@ pipeline {
                                     AhfAq7oBiLn5Eg==''', credentialsId: 'mynewkubeconfig2', serverUrl: 'https://172.20.24.25:8443') {
                                         powershell 'kubectl apply -f sa-webapp.yaml'
                                     }
-                                    sleep(time: 60, unit: 'SECONDS')
+                                    sleep(time: 20, unit: 'SECONDS')
                                 }
                             }
                         }
@@ -139,11 +139,11 @@ pipeline {
                     stages{
                         stage('npm build'){
                             steps{
-                                script{
-                                    def a = powershell './test.ps1'
-                                    powershell 'echo ${a}'
-                                }
                                 dir('Sentiment-analyser-app/sa-frontend/'){
+                                    script{
+                                        def a = powershell './test.ps1'
+                                        powershell 'echo ${a}'
+                                    }
                                     powershell "npm install"
                                     //def test = powershell './test.ps1'
                                     //powershell '$env:test = minikube service sa-web-app-lb --url --profile minikube; "window.API_URL = $env:test/sentiment" > ./public/config.js'
