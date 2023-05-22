@@ -142,7 +142,7 @@ pipeline {
                                 dir('Sentiment-analyser-app/sa-frontend/'){
                                     powershell "npm install"
                                     script{
-                                        powershell "test.ps1"
+                                        powershell "./test.ps1"
                                     //     kubeconfig(caCertificate: '''MIIDBjCCAe6gAwIBAgIBATANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwptaW5p
                                     // a3ViZUNBMB4XDTIxMDkyODA4MjMzMloXDTMxMDkyNzA4MjMzMlowFTETMBEGA1UE
                                     // AxMKbWluaWt1YmVDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAN55
