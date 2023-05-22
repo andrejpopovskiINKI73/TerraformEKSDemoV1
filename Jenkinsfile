@@ -139,9 +139,13 @@ pipeline {
                     stages{
                         stage('npm build'){
                             steps{
+                                script{
+                                    def a = powershell './test.ps1'
+                                    powershell 'echo ${a}'
+                                }
                                 dir('Sentiment-analyser-app/sa-frontend/'){
                                     powershell "npm install"
-                                    powershell './test.ps1'
+                                    //def test = powershell './test.ps1'
                                     //powershell '$env:test = minikube service sa-web-app-lb --url --profile minikube; "window.API_URL = $env:test/sentiment" > ./public/config.js'
                                     sleep(time: 30, unit: 'SECONDS')
                                     powershell "npm run build"
