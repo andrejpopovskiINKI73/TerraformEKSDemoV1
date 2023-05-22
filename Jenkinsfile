@@ -158,7 +158,7 @@ pipeline {
                                     8sfE9pn+nfzI5kKTukl6XgHPxxTHYTJGOtncBKE33mswaY/bOcfZnInBJSs+exnb
                                     t2tarPt3yNLF9NcxaPrZARNyB2+FGfUAubAAjkIXy60W0+GSQ0IxELHgDYOCGUyx
                                     eM+bsDj072uqmtbClBGopsJfHw5nPXqVltd5QPzoBdcHpCAM2wHJgn7VAeXYD2ng
-                                    AhfAq7oBiLn5Eg==''', credentialsId: 'mykubeconfig', serverUrl: 'https://172.25.152.242:8443') {
+                                    AhfAq7oBiLn5Eg==''', credentialsId: 'minikube', serverUrl: 'https://172.25.152.242:8443') {
                                         powershell 'minikube service sa-web-app-lb --url --profile minikube'
                                     }
                                         //powershell 'minikube service sa-web-app-lb --url --profile minikube'
