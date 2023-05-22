@@ -142,7 +142,7 @@ pipeline {
                                 dir('Sentiment-analyser-app/sa-frontend/'){
                                     powershell "npm install"
                                     script{
-                                        powershell "dir"
+                                        powershell "test.ps1"
                                     //     kubeconfig(caCertificate: '''MIIDBjCCAe6gAwIBAgIBATANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwptaW5p
                                     // a3ViZUNBMB4XDTIxMDkyODA4MjMzMloXDTMxMDkyNzA4MjMzMlowFTETMBEGA1UE
                                     // AxMKbWluaWt1YmVDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAN55
@@ -171,7 +171,7 @@ pipeline {
                                     }
                                     //powershell '$env:test = minikube service sa-web-app-lb --url --profile minikube; "window.API_URL = \\\'$env:test/sentiment\\\'" > ./public/config.js'
                                     //powershell 'minikube service sa-web-app-lb --url --profile minikube'
-                                    powershell 'echo ${pece}'
+                                    //powershell 'echo ${pece}'
                                     sleep(time: 30, unit: 'SECONDS')
                                     powershell "npm run build"
                                 }
