@@ -142,32 +142,11 @@ pipeline {
                                 dir('Sentiment-analyser-app/sa-frontend/'){
                                     powershell "npm install"
                                     script{
-                                        kubeconfig(caCertificate: '''MIID3DCCAsSgAwIBAgIBAjANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwptaW5p
-                                        a3ViZUNBMB4XDTIzMDUxODExMDc1MloXDTI2MDUxODExMDc1MlowLDEXMBUGA1UE
-                                        ChMOc3lzdGVtOm1hc3RlcnMxETAPBgNVBAMTCG1pbmlrdWJlMIIBIjANBgkqhkiG
-                                        9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxPlLLmexdLZcDdoyPjuaX4Km1H98JBoJFTS6
-                                        aPkW7wrIb2sDyvqeql6Ok7BdgXJMFKkQZ/BYF7eFHcuZ9q0OfrApQqHvsVBlhVrS
-                                        UmVwXt1H9O57aTqIoWeXACgN/4gGGVhE3dHg/WFYPWSYkSs7U/6VuNxXiPEqgU8I
-                                        +Vw/zENO3KRu6i05z9eGApxd1yKYVbsAstVZ7hX+6skh1xoY5yVaN0LFZD2wTdhO
-                                        BsPMNfBZoN21qaVrzD66r8bt12vSs9v5Lq9d1epCv4BDgkEi4qTEs5eahRiFbYA4
-                                        42gJADRZCGkyPz2ZXxqTsWV3duFEcm78sTKiMxdm5a2KGwLWgwIDAQABo4IBHjCC
-                                        ARowDgYDVR0PAQH/BAQDAgWgMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcD
-                                        AjAMBgNVHRMBAf8EAjAAMB8GA1UdIwQYMBaAFEZ7b1oCOxMc00PCXIm/MWv3Dua/
-                                        MIG5BgNVHREEgbEwga6CCm1pbmlrdWJlQ0GCH2NvbnRyb2wtcGxhbmUubWluaWt1
-                                        YmUuaW50ZXJuYWyCJGt1YmVybmV0ZXMuZGVmYXVsdC5zdmMuY2x1c3Rlci5sb2Nh
-                                        bIIWa3ViZXJuZXRlcy5kZWZhdWx0LnN2Y4ISa3ViZXJuZXRlcy5kZWZhdWx0ggpr
-                                        dWJlcm5ldGVzgglsb2NhbGhvc3SHBKwZmPKHBApgAAGHBH8AAAGHBAoAAAEwDQYJ
-                                        KoZIhvcNAQELBQADggEBAMhWGhJNcw8sCYSERRSD2/Olxjmy3xNb159V9OtZ2g9p
-                                        Y4tE5TVfyT5acE0c/dQA2Dxiu90ie7KsBgFEtJuycEaxL7vZ/Nyozl9uq9JjdqkM
-                                        tETF+RxwIdSAF8nwhuQ5KexktTQDHzgdU0Szi9pivS+lTthJy8KtgWA64UJ4a7t7
-                                        2k1ZLW2PJLPDjFIWVvktsnOFG6eTzKg9+eZE6QixTC1QJ6H4pZQunwIS519HQhE7
-                                        iWCjh4Y7/6d58ayv9LYvxzRjjomI18sHfD5kh8RWiVGZnZG34NiuLS8SU4sR5EDt
-                                        HrM47YYO2xEsuTJ7dQO1oQjXzPX/WDPBCxkJTMxULis=''', credentialsId: 'mykubeconfig', serverUrl: 'https://172.25.152.242:8443') {
-                                            env.MENDE = powershell 'minikube service sa-web-app-lb --url --profile minikube'
-                                        }
+                                        powershell 'minikube service sa-web-app-lb --url --profile minikube'
                                         //env.MENDE = powershell 'minikube service sa-web-app-lb --url --profile minikube'
-                                        env.PECE = 'window.API_URL = ${env.MENDE}'
-                                        powershell '${env.PECE} > ./public/config.js'
+                                        //env.MENDE = powershell 'minikube service sa-web-app-lb --url --profile minikube'
+                                        //env.PECE = 'window.API_URL = ${env.MENDE}'
+                                        //powershell '${env.PECE} > ./public/config.js'
                                     }
                                     //powershell '$env:test = minikube service sa-web-app-lb --url --profile minikube; "window.API_URL = \\\'$env:test/sentiment\\\'" > ./public/config.js'
                                     //powershell 'minikube service sa-web-app-lb --url --profile minikube'
