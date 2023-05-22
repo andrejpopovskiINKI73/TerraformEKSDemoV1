@@ -141,8 +141,10 @@ pipeline {
                             steps{
                                 dir('Sentiment-analyser-app/sa-frontend/'){
                                     script{
-                                        def a = powershell './test.ps1'
+                                        def a = powershell 'minikube service sa-web-app-lb --url --profile minikube'
                                         powershell 'echo ${a}'
+                                        def b = powershell 'window.API_URL = ${a}/sentiment > ./public/config.js'
+                                        powershell 'echo ${b}'
                                     }
                                     powershell "npm install"
                                     //def test = powershell './test.ps1'
