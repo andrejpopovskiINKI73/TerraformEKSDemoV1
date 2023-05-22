@@ -161,7 +161,7 @@ pipeline {
                                     // eM+bsDj072uqmtbClBGopsJfHw5nPXqVltd5QPzoBdcHpCAM2wHJgn7VAeXYD2ng
                                     // AhfAq7oBiLn5Eg==''', credentialsId: 'mykubeconfig', serverUrl: 'https://172.25.152.242:8443') {
                                             powershell 'minikube profile default'
-                                            powershell 'minikube service sa-web-app-lb --url'
+                                            //powershell 'minikube service sa-web-app-lb --url'
                                         // }
                                     sleep(time: 30, unit: 'SECONDS')
                                     powershell "npm run build"
