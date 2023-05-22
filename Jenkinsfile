@@ -141,9 +141,11 @@ pipeline {
                             steps{
                                 dir('Sentiment-analyser-app/sa-frontend/'){
                                     powershell "npm install"
-                                    def mende = powershell 'minikube service sa-web-app-lb --url --profile minikube'
-                                    def pece = 'window.API_URL = $mende'
-                                    powershell '$pece > ./public/config.js'
+                                    script{
+                                        env.MENDE = powershell 'minikube service sa-web-app-lb --url --profile minikube'
+                                        env.PECE = 'window.API_URL = ${env.MENDE}'
+                                        powershell '${env.PECE} > ./public/config.js'
+                                    }
                                     //powershell '$env:test = minikube service sa-web-app-lb --url --profile minikube; "window.API_URL = \\\'$env:test/sentiment\\\'" > ./public/config.js'
                                     //powershell 'minikube service sa-web-app-lb --url --profile minikube'
                                     sleep(time: 30, unit: 'SECONDS')
