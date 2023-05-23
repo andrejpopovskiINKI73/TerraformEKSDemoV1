@@ -126,7 +126,7 @@ pipeline {
                                     8sfE9pn+nfzI5kKTukl6XgHPxxTHYTJGOtncBKE33mswaY/bOcfZnInBJSs+exnb
                                     t2tarPt3yNLF9NcxaPrZARNyB2+FGfUAubAAjkIXy60W0+GSQ0IxELHgDYOCGUyx
                                     eM+bsDj072uqmtbClBGopsJfHw5nPXqVltd5QPzoBdcHpCAM2wHJgn7VAeXYD2ng
-                                    AhfAq7oBiLn5Eg==''', credentialsId: 'minikubedevconfignew', serverUrl: 'https://172.20.17.83:8443') {
+                                    AhfAq7oBiLn5Eg==''', credentialsId: 'minikubeee', serverUrl: 'https://172.20.31.172:8443') {
                                         powershell 'kubectl apply -f sa-webapp.yaml'
                                     }
                                     sleep(time: 20, unit: 'SECONDS')
@@ -192,7 +192,7 @@ pipeline {
                                     8sfE9pn+nfzI5kKTukl6XgHPxxTHYTJGOtncBKE33mswaY/bOcfZnInBJSs+exnb
                                     t2tarPt3yNLF9NcxaPrZARNyB2+FGfUAubAAjkIXy60W0+GSQ0IxELHgDYOCGUyx
                                     eM+bsDj072uqmtbClBGopsJfHw5nPXqVltd5QPzoBdcHpCAM2wHJgn7VAeXYD2ng
-                                    AhfAq7oBiLn5Eg==''', credentialsId: 'minikubedevconfignew', serverUrl: 'https://172.20.17.83:8443') {
+                                    AhfAq7oBiLn5Eg==''', credentialsId: 'minikubeee', serverUrl: 'https://172.20.31.172:8443') {
                                         powershell 'kubectl apply -f sa-frontend.yaml'
                                     }
                                     sleep(time: 60, unit: 'SECONDS')
@@ -247,7 +247,7 @@ pipeline {
                                     8sfE9pn+nfzI5kKTukl6XgHPxxTHYTJGOtncBKE33mswaY/bOcfZnInBJSs+exnb
                                     t2tarPt3yNLF9NcxaPrZARNyB2+FGfUAubAAjkIXy60W0+GSQ0IxELHgDYOCGUyx
                                     eM+bsDj072uqmtbClBGopsJfHw5nPXqVltd5QPzoBdcHpCAM2wHJgn7VAeXYD2ng
-                                    AhfAq7oBiLn5Eg==''', credentialsId: 'minikubedevconfignew', serverUrl: 'https://172.20.17.83:8443') {
+                                    AhfAq7oBiLn5Eg==''', credentialsId: 'minikubeee', serverUrl: 'https://172.20.31.172:8443') {
                                         powershell 'kubectl apply -f sa-logic.yaml'
                                     }
                                     sleep(time: 60, unit: 'SECONDS')
