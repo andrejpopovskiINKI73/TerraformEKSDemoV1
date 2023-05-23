@@ -140,13 +140,32 @@ pipeline {
                         stage('npm build'){
                             steps{
                                 dir('Sentiment-analyser-app/sa-frontend/'){
-                                    script{
-                                        def a = powershell '$a = kubectl get service sa-web-app-lb -o json; $x = $a | ConvertFrom-Json; $nodeport = $x.spec.ports.nodePort ; $nodeport'
-                                        powershell 'echo ${a}'
-                                        def b = powershell '$b = kubectl cluster-info; ($b  |  Select-String -Pattern "\\d{1,3}(\\.\\d{1,3}){3}").Matches.Value | Select -first 1'
-                                        powershell 'echo http://${a}:${b}'
-                                        def c = "http://${a}:${b}"
-                                        powershell 'echo ${b}'
+                                    script{ 
+                                        kubeconfig(caCertificate: '''MIIDBjCCAe6gAwIBAgIBATANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwptaW5p
+                                        a3ViZUNBMB4XDTIxMDkyODA4MjMzMloXDTMxMDkyNzA4MjMzMlowFTETMBEGA1UE
+                                        AxMKbWluaWt1YmVDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAN55
+                                        p0MJVoZfSs1OaS+xY9YwBniB0Q0arwJQEPcbBkrzRjXbQ0cozqRCTYk8CIDl0KWF
+                                        /rPZJTLd/U91+2yZPl4VfniOXJ7Qq0G43a9OPp/vfPFdoT0/aj9DSJmg6EBaf/2H
+                                        gyNFwhm3pqyQhIJ5vQK5vMm8TRYVFU0ozbdorVVnVWgLsPpaHghtgc6jNnZlNV5Y
+                                        xYRY9jQxtoOnMYOrOfTQ/jY2kAz/SA8hUOWGjQkw0JryYf5+8aO82ijpFT8du2jL
+                                        3beq/QF0taCkDkDZ2aIi81iOstHouagf4TRhuQlUf2Kp1IwC4lsAprppGzCqkJmd
+                                        akXHsIUing3GVD6KEecCAwEAAaNhMF8wDgYDVR0PAQH/BAQDAgKkMB0GA1UdJQQW
+                                        MBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQW
+                                        BBRGe29aAjsTHNNDwlyJvzFr9w7mvzANBgkqhkiG9w0BAQsFAAOCAQEA2s+erSYh
+                                        gevO7nEHLKTMICd3x9hb3BvLDy+eefwaCFBUzdXw4JM2f3eghKuoIFefuzjhH5nX
+                                        ixb52H/ptcrwKqQTj9haoVrxGENre9/oaq8Vyj4WF6qp7UGAXMXQw2yfGjWFgC0o
+                                        8sfE9pn+nfzI5kKTukl6XgHPxxTHYTJGOtncBKE33mswaY/bOcfZnInBJSs+exnb
+                                        t2tarPt3yNLF9NcxaPrZARNyB2+FGfUAubAAjkIXy60W0+GSQ0IxELHgDYOCGUyx
+                                        eM+bsDj072uqmtbClBGopsJfHw5nPXqVltd5QPzoBdcHpCAM2wHJgn7VAeXYD2ng
+                                        AhfAq7oBiLn5Eg==''', credentialsId: 'minikubeee', serverUrl: 'https://172.20.31.172:8443') {
+                                            def a = powershell '$a = kubectl get service sa-web-app-lb -o json; $x = $a | ConvertFrom-Json; $nodeport = $x.spec.ports.nodePort ; $nodeport'
+                                            powershell 'echo ${a}'
+                                            def b = powershell '$b = kubectl cluster-info; ($b  |  Select-String -Pattern "\\d{1,3}(\\.\\d{1,3}){3}").Matches.Value | Select -first 1'
+                                            powershell 'echo http://${a}:${b}'
+                                            def c = "http://${a}:${b}"
+                                            powershell 'echo ${b}'
+                                        }
+                                        
                                     }
                                     powershell "npm install"
                                     //def test = powershell './test.ps1'
