@@ -126,7 +126,7 @@ pipeline {
                                     8sfE9pn+nfzI5kKTukl6XgHPxxTHYTJGOtncBKE33mswaY/bOcfZnInBJSs+exnb
                                     t2tarPt3yNLF9NcxaPrZARNyB2+FGfUAubAAjkIXy60W0+GSQ0IxELHgDYOCGUyx
                                     eM+bsDj072uqmtbClBGopsJfHw5nPXqVltd5QPzoBdcHpCAM2wHJgn7VAeXYD2ng
-                                    AhfAq7oBiLn5Eg==''', credentialsId: 'mynewkubeconfig2', serverUrl: 'https://172.20.24.25:8443') {
+                                    AhfAq7oBiLn5Eg==''', credentialsId: 'minikubedevconfignew', serverUrl: 'https://172.20.21.231:8443') {
                                         powershell 'kubectl apply -f sa-webapp.yaml'
                                     }
                                     sleep(time: 20, unit: 'SECONDS')
@@ -141,7 +141,7 @@ pipeline {
                             steps{
                                 dir('Sentiment-analyser-app/sa-frontend/'){
                                     script{
-                                        def a = powershell 'minikube service sa-web-app-lb --url --profile minikube'
+                                        def a = powershell 'minikube service sa-web-app-lb --url --profile dev'
                                         powershell 'echo ${a}'
                                         def b = powershell 'window.API_URL = ${a}/sentiment > ./public/config.js'
                                         powershell 'echo ${b}'
@@ -190,7 +190,7 @@ pipeline {
                                     8sfE9pn+nfzI5kKTukl6XgHPxxTHYTJGOtncBKE33mswaY/bOcfZnInBJSs+exnb
                                     t2tarPt3yNLF9NcxaPrZARNyB2+FGfUAubAAjkIXy60W0+GSQ0IxELHgDYOCGUyx
                                     eM+bsDj072uqmtbClBGopsJfHw5nPXqVltd5QPzoBdcHpCAM2wHJgn7VAeXYD2ng
-                                    AhfAq7oBiLn5Eg==''', credentialsId: 'mynewkubeconfig2', serverUrl: 'https://172.20.24.25:8443') {
+                                    AhfAq7oBiLn5Eg==''', credentialsId: 'minikubedevconfignew', serverUrl: 'https://172.20.21.231:8443') {
                                         powershell 'kubectl apply -f sa-frontend.yaml'
                                     }
                                     sleep(time: 60, unit: 'SECONDS')
@@ -245,7 +245,7 @@ pipeline {
                                     8sfE9pn+nfzI5kKTukl6XgHPxxTHYTJGOtncBKE33mswaY/bOcfZnInBJSs+exnb
                                     t2tarPt3yNLF9NcxaPrZARNyB2+FGfUAubAAjkIXy60W0+GSQ0IxELHgDYOCGUyx
                                     eM+bsDj072uqmtbClBGopsJfHw5nPXqVltd5QPzoBdcHpCAM2wHJgn7VAeXYD2ng
-                                    AhfAq7oBiLn5Eg==''', credentialsId: 'mynewkubeconfig2', serverUrl: 'https://172.20.24.25:8443') {
+                                    AhfAq7oBiLn5Eg==''', credentialsId: 'minikubedevconfignew', serverUrl: 'https://172.20.21.231:8443') {
                                         powershell 'kubectl apply -f sa-logic.yaml'
                                     }
                                     sleep(time: 60, unit: 'SECONDS')
