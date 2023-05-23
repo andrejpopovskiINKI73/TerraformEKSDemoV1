@@ -141,14 +141,16 @@ pipeline {
                             steps{
                                 dir('Sentiment-analyser-app/sa-frontend/'){
                                     script{
-                                        def a = powershell 'minikube service sa-web-app-lb --url --profile dev'
+                                        def a = powershell '$a = kubectl get service sa-web-app-lb -o json; $x = $a | ConvertFrom-Json; $nodeport = $x.spec.ports.nodePort ; $nodeport'
                                         powershell 'echo ${a}'
-                                        def b = powershell 'window.API_URL = ${a}/sentiment > ./public/config.js'
+                                        def b = powershell '$b = kubectl cluster-info; ($b  |  Select-String -Pattern "\d{1,3}(\.\d{1,3}){3}").Matches.Value | Select -first 1'
+                                        powershell 'echo http://${a}:${b}'
+                                        def c = "http://${a}:${b}"
                                         powershell 'echo ${b}'
                                     }
                                     powershell "npm install"
                                     //def test = powershell './test.ps1'
-                                    //powershell '$env:test = minikube service sa-web-app-lb --url --profile minikube; "window.API_URL = $env:test/sentiment" > ./public/config.js'
+                                    powershell '"window.API_URL = ${c}/sentiment" > ./public/config.js'
                                     sleep(time: 30, unit: 'SECONDS')
                                     powershell "npm run build"
                                 }
