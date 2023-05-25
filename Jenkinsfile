@@ -158,12 +158,20 @@ pipeline {
                                         t2tarPt3yNLF9NcxaPrZARNyB2+FGfUAubAAjkIXy60W0+GSQ0IxELHgDYOCGUyx
                                         eM+bsDj072uqmtbClBGopsJfHw5nPXqVltd5QPzoBdcHpCAM2wHJgn7VAeXYD2ng
                                         AhfAq7oBiLn5Eg==''', credentialsId: 'minikubeee', serverUrl: 'https://172.20.31.172:8443') {
-                                            def a = powershell '$a = kubectl get service sa-web-app-lb -o json; $x = $a | ConvertFrom-Json; $nodeport = $x.spec.ports.nodePort ; $nodeport'
-                                            def b = powershell '$b = kubectl cluster-info; ($b  |  Select-String -Pattern "\\d{1,3}(\\.\\d{1,3}){3}").Matches.Value | Select -first 1'
-                                            def c = "window.API_URL = http://${b}:${a}/sentiment"
+                                            //def a = powershell '$a = kubectl get service sa-web-app-lb -o json; $x = $a | ConvertFrom-Json; $nodeport = $x.spec.ports.nodePort ; $nodeport'
+                                            //def b = powershell '$b = kubectl cluster-info; ($b  |  Select-String -Pattern "\\d{1,3}(\\.\\d{1,3}){3}").Matches.Value | Select -first 1'
+                                            //def c = "window.API_URL = http://${b}:${a}/sentiment"
                                             //powershell 'echo ${c}'
-                                            echo "The value of c is: ${c}"
-                                            writeFile file: './public/config.js', text: c
+                                            def command1 = '$b = kubectl cluster-info; ($b  |  Select-String -Pattern "\\d{1,3}(\\.\\d{1,3}){3}").Matches.Value | Select -first 1'
+                                            def output1 = bat(script: "powershell.exe -Command \"${command1}\"", returnStdout: true).trim()
+
+                                            def command2 = '$a = kubectl get service sa-web-app-lb -o json; $x = $a | ConvertFrom-Json; $nodeport = $x.spec.ports.nodePort ; $nodeport'
+                                            def output2 = bat(script: "powershell.exe -Command \"${command2}\"", returnStdout: true).trim()
+
+                                            def finalRes = "window.API_URL = http://${output1}:${output2}/sentiment"
+                                            
+                                            echo "just printing the returned value: ${finalRes}"
+                                            writeFile file: './public/config.js', text: finalRes
                                             //powershell '${c} > ./public/config.js'
                                         }
                                     }
