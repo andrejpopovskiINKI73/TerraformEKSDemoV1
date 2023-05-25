@@ -164,7 +164,7 @@ pipeline {
                                            
                                             def output2 = powershell(script: '$a = kubectl get service sa-web-app-lb -o json | ConvertFrom-Json; $a.spec.ports.nodePort', returnStdout: true).trim()
 
-                                            def finalRes = "'window.API_URL = http://${output1}:${output2}/sentiment'"
+                                            def finalRes = "window.API_URL = 'http://${output1}:${output2}/sentiment'"
                                             
                                             echo "just printing the returned value: ${finalRes}"
                                             writeFile file: './public/config.js', text: finalRes
