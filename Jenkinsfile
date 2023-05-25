@@ -170,7 +170,7 @@ pipeline {
                                             writeFile file: './public/config.js', text: finalRes
                                         }
                                     }
-                                    sleep(time: 60, unit: 'SECONDS')
+                                    sleep(time: 15, unit: 'SECONDS')
                                     powershell "npm run build"
                                 }
                             }
@@ -214,7 +214,7 @@ pipeline {
                                     AhfAq7oBiLn5Eg==''', credentialsId: 'minikubeee', serverUrl: 'https://172.20.31.172:8443') {
                                         powershell 'kubectl apply -f sa-frontend.yaml'
                                     }
-                                    sleep(time: 60, unit: 'SECONDS')
+                                    sleep(time: 30, unit: 'SECONDS')
                                 }
                             }
                         }
@@ -269,7 +269,7 @@ pipeline {
                                     AhfAq7oBiLn5Eg==''', credentialsId: 'minikubeee', serverUrl: 'https://172.20.31.172:8443') {
                                         powershell 'kubectl apply -f sa-logic.yaml'
                                     }
-                                    sleep(time: 60, unit: 'SECONDS')
+                                    sleep(time: 30, unit: 'SECONDS')
                                 }
                             }
                         }
@@ -283,5 +283,24 @@ pipeline {
                 }
             }
         }
+    }
+    post {  
+         always {  
+             echo 'Execution of the job was done'  
+         }  
+         success {  
+            mail bcc: '', body: '''TEST
+
+            TEST, test
+
+            Regards,''', cc: '', from: '', replyTo: '', subject: 'Test', to: 'andrejpopovski@hotmail.com'
+         }  
+         failure {  
+            mail bcc: '', body: '''FAIL TEST
+
+            Failed TEST, test
+
+            Regards,''', cc: '', from: '', replyTo: '', subject: 'Test', to: 'andrejpopovski@hotmail.com'
+         }
     }
 }
