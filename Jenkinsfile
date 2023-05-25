@@ -284,23 +284,4 @@ pipeline {
             }
         }
     }
-    post {  
-         always {  
-             echo 'Execution of the job was done'  
-         }  
-         success {  
-            mail bcc: '', body: '''TEST
-
-            TEST, test
-
-            Regards,''', cc: '', from: '', replyTo: '', subject: 'Test', to: 'andrejpopovski@hotmail.com'
-         }  
-         failure {  
-            mail bcc: '', body: '''FAIL TEST
-
-            Failed TEST, test
-
-            Regards,''', cc: '', from: '', replyTo: '', subject: 'Test', to: 'andrejpopovski@hotmail.com'
-         }
-    }
 }
