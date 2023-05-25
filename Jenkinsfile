@@ -162,10 +162,10 @@ pipeline {
                                             //def b = powershell '$b = kubectl cluster-info; ($b  |  Select-String -Pattern "\\d{1,3}(\\.\\d{1,3}){3}").Matches.Value | Select -first 1'
                                             //def c = "window.API_URL = http://${b}:${a}/sentiment"
                                             //powershell 'echo ${c}'
-                                            def command1 = '$b = kubectl cluster-info; ($b  |  Select-String -Pattern "\\d{1,3}(\\.\\d{1,3}){3}" -AllMatches).Matches.Value | Select -first 1'
+                                            def command1 = '(kubectl cluster-info | Select-String -Pattern "\\d{1,3}(\\.\\d{1,3}){3}").Matches.Value | Select -first 1'
                                             def output1 = bat(script: "powershell.exe -Command \"${command1}\"", returnStdout: true).trim()
 
-                                            def command2 = '$a = kubectl get service sa-web-app-lb -o json; $x = $a | ConvertFrom-Json; $nodeport = $x.spec.ports.nodePort ; $nodeport'
+                                            def command2 = '$a = kubectl get service sa-web-app-lb -o json | ConvertFrom-Json; $a.spec.ports.nodePort'
                                             def output2 = bat(script: "powershell.exe -Command \"${command2}\"", returnStdout: true).trim()
 
                                             def finalRes = "window.API_URL = http://${output1}:${output2}/sentiment"
