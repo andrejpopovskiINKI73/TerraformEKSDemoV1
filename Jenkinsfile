@@ -165,7 +165,8 @@ pipeline {
                                             //def command1 = 'powershell.exe -Command "(kubectl cluster-info | Select-String -Pattern '[0-9]{1,3}(\.[0-9]{1,3}){3}').Matches.Value | Select-Object -First 1"'
                                             //def output1 = bat(script: "powershell.exe -Command \"${command1}\"", returnStdout: true).trim()
 
-                                            def output1 = powershell(script: 'kubectl cluster-info | Select-String -Pattern \'[0-9]{1,3}(\\.[0-9]{1,3}){3}\' | Select-Object -First 1', returnStdout: true).trim()
+                                            def output1 = bat(script: 'powershell.exe -Command "(kubectl cluster-info | Select-String -Pattern \'[0-9]{1,3}(\\.[0-9]{1,3}){3}\').Matches.Value | Select-Object -First 1"', returnStdout: true).trim()
+                                            //def output1 = powershell(script: 'kubectl cluster-info | Select-String -Pattern \'[0-9]{1,3}(\\.[0-9]{1,3}){3}\'.Matches.Value | Select-Object -First 1', returnStdout: true).trim()
 
                                             //def command2 = '$a = kubectl get service sa-web-app-lb -o json | ConvertFrom-Json; $a.spec.ports.nodePort'
                                             //def output2 = bat(script: "powershell.exe -Command \"${command2}\"", returnStdout: true).trim()
