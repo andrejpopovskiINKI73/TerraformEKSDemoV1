@@ -140,6 +140,7 @@ pipeline {
                         stage('npm build'){
                             steps{
                                 dir('Sentiment-analyser-app/sa-frontend/'){
+                                    powershell "npm install"
                                     script{ 
                                         kubeconfig(caCertificate: '''MIIDBjCCAe6gAwIBAgIBATANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwptaW5p
                                         a3ViZUNBMB4XDTIxMDkyODA4MjMzMloXDTMxMDkyNzA4MjMzMlowFTETMBEGA1UE
@@ -158,31 +159,18 @@ pipeline {
                                         t2tarPt3yNLF9NcxaPrZARNyB2+FGfUAubAAjkIXy60W0+GSQ0IxELHgDYOCGUyx
                                         eM+bsDj072uqmtbClBGopsJfHw5nPXqVltd5QPzoBdcHpCAM2wHJgn7VAeXYD2ng
                                         AhfAq7oBiLn5Eg==''', credentialsId: 'minikubeee', serverUrl: 'https://172.20.31.172:8443') {
-                                            //def a = powershell '$a = kubectl get service sa-web-app-lb -o json; $x = $a | ConvertFrom-Json; $nodeport = $x.spec.ports.nodePort ; $nodeport'
-                                            //def b = powershell '$b = kubectl cluster-info; ($b  |  Select-String -Pattern "\\d{1,3}(\\.\\d{1,3}){3}").Matches.Value | Select -first 1'
-                                            //def c = "window.API_URL = http://${b}:${a}/sentiment"
-                                            //powershell 'echo ${c}'
-                                            //def command1 = 'powershell.exe -Command "(kubectl cluster-info | Select-String -Pattern '[0-9]{1,3}(\.[0-9]{1,3}){3}').Matches.Value | Select-Object -First 1"'
-                                            //def output1 = bat(script: "powershell.exe -Command \"${command1}\"", returnStdout: true).trim()
 
                                             def output1 = powershell(script: '(kubectl cluster-info | Select-String -Pattern \'[0-9]{1,3}(\\.[0-9]{1,3}){3}\').Matches.Value | Select-Object -First 1', returnStdout: true).trim()
-                                            //def output1 = 'powershell.exe -Command "(kubectl cluster-info | Select-String -Pattern \'[0-9]{1,3}(\.[0-9]{1,3}){3}\').Matches.Value | Select-Object -First 1"', returnStdout: true).trim()
-                                            //def output1 = bat(script: 'powershell.exe -Command "(kubectl cluster-info | Select-String -Pattern \'[0-9]{1,3}(\\.[0-9]{1,3}){3}\').Matches.Value | Select-Object -First 1"', returnStdout: true).trim()
-                                            //def output1 = powershell(script: 'kubectl cluster-info | Select-String -Pattern \'[0-9]{1,3}(\\.[0-9]{1,3}){3}\'.Matches.Value | Select-Object -First 1', returnStdout: true).trim()
-
-                                            //def command2 = '$a = kubectl get service sa-web-app-lb -o json | ConvertFrom-Json; $a.spec.ports.nodePort'
-                                            //def output2 = bat(script: "powershell.exe -Command \"${command2}\"", returnStdout: true).trim()
+                                           
                                             def output2 = powershell(script: '$a = kubectl get service sa-web-app-lb -o json | ConvertFrom-Json; $a.spec.ports.nodePort', returnStdout: true).trim()
 
-                                            def finalRes = "window.API_URL = http://${output1}:${output2}/sentiment"
+                                            def finalRes = "'window.API_URL = http://${output1}:${output2}/sentiment'"
                                             
                                             echo "just printing the returned value: ${finalRes}"
                                             writeFile file: './public/config.js', text: finalRes
-                                            //powershell '${c} > ./public/config.js'
                                         }
                                     }
-                                    powershell "npm install"
-                                    sleep(time: 30, unit: 'SECONDS')
+                                    sleep(time: 60, unit: 'SECONDS')
                                     powershell "npm run build"
                                 }
                             }
