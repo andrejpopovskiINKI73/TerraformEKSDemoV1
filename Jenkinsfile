@@ -161,8 +161,10 @@ pipeline {
                                             def a = powershell '$a = kubectl get service sa-web-app-lb -o json; $x = $a | ConvertFrom-Json; $nodeport = $x.spec.ports.nodePort ; $nodeport'
                                             def b = powershell '$b = kubectl cluster-info; ($b  |  Select-String -Pattern "\\d{1,3}(\\.\\d{1,3}){3}").Matches.Value | Select -first 1'
                                             def c = 'window.API_URL = http://${b}:${a}/sentiment'
-                                            powershell 'echo ${c}'
-                                            powershell '${c} > ./public/config.js'
+                                            //powershell 'echo ${c}'
+                                            echo "The value of c is: ${c}"
+                                            writeFile file: './public/config.js', text: c
+                                            //powershell '${c} > ./public/config.js'
                                         }
                                     }
                                     powershell "npm install"
