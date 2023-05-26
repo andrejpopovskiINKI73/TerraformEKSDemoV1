@@ -284,4 +284,17 @@ pipeline {
             }
         }
     }
+        post {  
+         always {  
+             echo 'Execution of the job was done'  
+         }  
+         success {  
+            mail bcc: '', body: '''Pipeline finished successfully!!
+            Regards,''', cc: '', from: '', replyTo: '', subject: 'SUCCESS', to: 'andrej.popovski.iw@gmail.com'
+         }  
+         failure {  
+            mail bcc: '', body: '''Pipeline failed, investigate issues!
+            Regards,''', cc: '', from: '', replyTo: '', subject: 'Test', to: 'andrej.popovski.iw@gmail.com'
+         }
+    }
 }
