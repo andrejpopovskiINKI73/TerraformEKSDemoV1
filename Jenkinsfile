@@ -121,7 +121,16 @@ pipeline {
                         stage('webapp to k8s deploy'){
                             steps{
                                 dir('Sentiment-analyser-app/kubernetes-resources/'){
-                                    kubeconfig(caCertificate: '', credentialsId: 'AWSEKSCluster', serverUrl: '') {
+                                    kubeconfig(caCertificate: '''LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMvakNDQWVhZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJek1EVXp
+                                    NVEV4TkRjek9Wb1hEVE16TURVeU9ERXhORGN6T1Zvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTnRLCjRuU3
+                                    RxQlV6MlBTNnh3dERGcmxwQ1k1Ni9sMUdKTnFoYVNZYjA3ZTgxYVRERlF3cklnRFRXMDVybGMyY0x1SWMKOWRtckFPZ1g2L3JRUlRsRTJ4TkozTlN6eEhaVTdLNHZuODMrUm1ZRVExaVhoREE2NnVJb
+                                    29vdCt3bEJ4bWhFSwpBMFBQSnBrbE1xM01WeFVIZmxQRHd6d3NHSXZRWUpwOW1GZkgydHlKUXZ2UElyVlpTRFhCNS9RUmwvK1gxSTJ0ClJmRGF0d0NpUHE2UW5HWjJFVnNSOFNiZWNrWVdSdmtoN0tR
+                                    RDEyVDBXUjVVUVlvWngrLzJ6aXd2a21JS3ZrYXMKTWlEMmNXSGcwRHRrN25JT3hRZ2NWT2h0QUJSc0t3UjNxc3BqMGJVNlFSQ0QrZFB6NjEvcmRXSTAzMEJoY3BUbgplMHVzY3lFZGdDeSs5a1ZEOHo
+                                    wQ0F3RUFBYU5aTUZjd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZLVTRBWFJJRmtlZFRFYVNRZUR4YnFsd1dpOHdNQlVHQTFVZEVRUU8KTU
+                                    F5Q0NtdDFZbVZ5Ym1WMFpYTXdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBRE5ML1RTVmJNZG1mZW53ck5TNgo2ZGRhRy8xS0xxZTlSRGlmRlZXMGFsMHUyTDFjQkN1Z2pVcGU0bW56elRVL2UxcmhWU
+                                    lJaa2p6N0VXWDBkc0M1CmxQSGJrUUdTajhlblAxd1lPNUJaT25OYmt2a1NDalhIc2pMQTY0QkxWbHJXajkvMDl6L1hFOHptanFjNG1pUFUKTG1pWVhZZUNSREhpSjh6N0lFQ1ZaN3VlYzBlcUpHYmhI
+                                    cFpGSTJhNTAyYmxGVzlwcld0QUhNVGg5V3Q0L1o5YgpwSmtVN1VYRUUxLyt4UUdNS25zd3I3aVRtVHp6SWMzc3ZpWS9SeTFrTjJSQ2c5Vlc4N2xwOXBOeEJhUzhMdldYCkpGZnZVV3dRMlc5YTliOCs
+                                    0S0FuR3NmYTBscU5LK3pUTmQycVNDeTNFYzZtSkd5V29tZ1l0bk1lSlNvU09aakMKMnVjPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==''', credentialsId: 'AWSEKSCluster', serverUrl: 'https://F9344790B436F4FC48A987CA9C739E4E.gr7.us-east-1.eks.amazonaws.com') {
                                         powershell 'kubectl apply -f sa-webapp.yaml --context aws'
                                     }
                                     // kubeconfig(caCertificate: '''MIIDBjCCAe6gAwIBAgIBATANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwptaW5p
@@ -156,7 +165,16 @@ pipeline {
                                 dir('Sentiment-analyser-app/sa-frontend/'){
                                     powershell "npm install"
                                     script{ 
-                                        kubeconfig(caCertificate: '', credentialsId: 'AWSEKSCluster', serverUrl: '') {
+                                        kubeconfig(caCertificate: '''LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMvakNDQWVhZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJek1EVXp
+                                        NVEV4TkRjek9Wb1hEVE16TURVeU9ERXhORGN6T1Zvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTnRLCjRuU3
+                                        RxQlV6MlBTNnh3dERGcmxwQ1k1Ni9sMUdKTnFoYVNZYjA3ZTgxYVRERlF3cklnRFRXMDVybGMyY0x1SWMKOWRtckFPZ1g2L3JRUlRsRTJ4TkozTlN6eEhaVTdLNHZuODMrUm1ZRVExaVhoREE2NnVJb
+                                        29vdCt3bEJ4bWhFSwpBMFBQSnBrbE1xM01WeFVIZmxQRHd6d3NHSXZRWUpwOW1GZkgydHlKUXZ2UElyVlpTRFhCNS9RUmwvK1gxSTJ0ClJmRGF0d0NpUHE2UW5HWjJFVnNSOFNiZWNrWVdSdmtoN0tR
+                                        RDEyVDBXUjVVUVlvWngrLzJ6aXd2a21JS3ZrYXMKTWlEMmNXSGcwRHRrN25JT3hRZ2NWT2h0QUJSc0t3UjNxc3BqMGJVNlFSQ0QrZFB6NjEvcmRXSTAzMEJoY3BUbgplMHVzY3lFZGdDeSs5a1ZEOHo
+                                        wQ0F3RUFBYU5aTUZjd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZLVTRBWFJJRmtlZFRFYVNRZUR4YnFsd1dpOHdNQlVHQTFVZEVRUU8KTU
+                                        F5Q0NtdDFZbVZ5Ym1WMFpYTXdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBRE5ML1RTVmJNZG1mZW53ck5TNgo2ZGRhRy8xS0xxZTlSRGlmRlZXMGFsMHUyTDFjQkN1Z2pVcGU0bW56elRVL2UxcmhWU
+                                        lJaa2p6N0VXWDBkc0M1CmxQSGJrUUdTajhlblAxd1lPNUJaT25OYmt2a1NDalhIc2pMQTY0QkxWbHJXajkvMDl6L1hFOHptanFjNG1pUFUKTG1pWVhZZUNSREhpSjh6N0lFQ1ZaN3VlYzBlcUpHYmhI
+                                        cFpGSTJhNTAyYmxGVzlwcld0QUhNVGg5V3Q0L1o5YgpwSmtVN1VYRUUxLyt4UUdNS25zd3I3aVRtVHp6SWMzc3ZpWS9SeTFrTjJSQ2c5Vlc4N2xwOXBOeEJhUzhMdldYCkpGZnZVV3dRMlc5YTliOCs
+                                        0S0FuR3NmYTBscU5LK3pUTmQycVNDeTNFYzZtSkd5V29tZ1l0bk1lSlNvU09aakMKMnVjPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==''', credentialsId: 'AWSEKSCluster', serverUrl: 'https://F9344790B436F4FC48A987CA9C739E4E.gr7.us-east-1.eks.amazonaws.com') {
                                             def output1 = powershell(script: '(kubectl cluster-info --context aws | Select-String -Pattern \'[0-9]{1,3}(\\.[0-9]{1,3}){3}\').Matches.Value | Select-Object -First 1', returnStdout: true).trim()
                                            
                                             def output2 = powershell(script: '$a = kubectl get service sa-web-app-lb --context aws -o json | ConvertFrom-Json; $a.spec.ports.nodePort', returnStdout: true).trim()
@@ -219,7 +237,16 @@ pipeline {
                         stage('frontend to k8s deploy'){
                             steps{
                                 dir('Sentiment-analyser-app/kubernetes-resources/'){
-                                    kubeconfig(caCertificate: '', credentialsId: 'AWSEKSCluster', serverUrl: '') {
+                                    kubeconfig(caCertificate: '''LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMvakNDQWVhZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJek1EVXp
+                                    NVEV4TkRjek9Wb1hEVE16TURVeU9ERXhORGN6T1Zvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTnRLCjRuU3
+                                    RxQlV6MlBTNnh3dERGcmxwQ1k1Ni9sMUdKTnFoYVNZYjA3ZTgxYVRERlF3cklnRFRXMDVybGMyY0x1SWMKOWRtckFPZ1g2L3JRUlRsRTJ4TkozTlN6eEhaVTdLNHZuODMrUm1ZRVExaVhoREE2NnVJb
+                                    29vdCt3bEJ4bWhFSwpBMFBQSnBrbE1xM01WeFVIZmxQRHd6d3NHSXZRWUpwOW1GZkgydHlKUXZ2UElyVlpTRFhCNS9RUmwvK1gxSTJ0ClJmRGF0d0NpUHE2UW5HWjJFVnNSOFNiZWNrWVdSdmtoN0tR
+                                    RDEyVDBXUjVVUVlvWngrLzJ6aXd2a21JS3ZrYXMKTWlEMmNXSGcwRHRrN25JT3hRZ2NWT2h0QUJSc0t3UjNxc3BqMGJVNlFSQ0QrZFB6NjEvcmRXSTAzMEJoY3BUbgplMHVzY3lFZGdDeSs5a1ZEOHo
+                                    wQ0F3RUFBYU5aTUZjd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZLVTRBWFJJRmtlZFRFYVNRZUR4YnFsd1dpOHdNQlVHQTFVZEVRUU8KTU
+                                    F5Q0NtdDFZbVZ5Ym1WMFpYTXdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBRE5ML1RTVmJNZG1mZW53ck5TNgo2ZGRhRy8xS0xxZTlSRGlmRlZXMGFsMHUyTDFjQkN1Z2pVcGU0bW56elRVL2UxcmhWU
+                                    lJaa2p6N0VXWDBkc0M1CmxQSGJrUUdTajhlblAxd1lPNUJaT25OYmt2a1NDalhIc2pMQTY0QkxWbHJXajkvMDl6L1hFOHptanFjNG1pUFUKTG1pWVhZZUNSREhpSjh6N0lFQ1ZaN3VlYzBlcUpHYmhI
+                                    cFpGSTJhNTAyYmxGVzlwcld0QUhNVGg5V3Q0L1o5YgpwSmtVN1VYRUUxLyt4UUdNS25zd3I3aVRtVHp6SWMzc3ZpWS9SeTFrTjJSQ2c5Vlc4N2xwOXBOeEJhUzhMdldYCkpGZnZVV3dRMlc5YTliOCs
+                                    0S0FuR3NmYTBscU5LK3pUTmQycVNDeTNFYzZtSkd5V29tZ1l0bk1lSlNvU09aakMKMnVjPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==''', credentialsId: 'AWSEKSCluster', serverUrl: 'https://F9344790B436F4FC48A987CA9C739E4E.gr7.us-east-1.eks.amazonaws.com') {
                                         powershell 'kubectl apply -f sa-frontend.yaml --context aws'
                                     }
                                     // kubeconfig(caCertificate: '''MIIDBjCCAe6gAwIBAgIBATANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwptaW5p
@@ -277,7 +304,16 @@ pipeline {
                         stage('logic to k8s deploy'){
                             steps{
                                 dir('Sentiment-analyser-app/kubernetes-resources/'){
-                                    kubeconfig(caCertificate: '', credentialsId: 'AWSEKSCluster', serverUrl: '') {
+                                    kubeconfig(caCertificate: '''LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMvakNDQWVhZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJek1EVXp
+                                    NVEV4TkRjek9Wb1hEVE16TURVeU9ERXhORGN6T1Zvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTnRLCjRuU3
+                                    RxQlV6MlBTNnh3dERGcmxwQ1k1Ni9sMUdKTnFoYVNZYjA3ZTgxYVRERlF3cklnRFRXMDVybGMyY0x1SWMKOWRtckFPZ1g2L3JRUlRsRTJ4TkozTlN6eEhaVTdLNHZuODMrUm1ZRVExaVhoREE2NnVJb
+                                    29vdCt3bEJ4bWhFSwpBMFBQSnBrbE1xM01WeFVIZmxQRHd6d3NHSXZRWUpwOW1GZkgydHlKUXZ2UElyVlpTRFhCNS9RUmwvK1gxSTJ0ClJmRGF0d0NpUHE2UW5HWjJFVnNSOFNiZWNrWVdSdmtoN0tR
+                                    RDEyVDBXUjVVUVlvWngrLzJ6aXd2a21JS3ZrYXMKTWlEMmNXSGcwRHRrN25JT3hRZ2NWT2h0QUJSc0t3UjNxc3BqMGJVNlFSQ0QrZFB6NjEvcmRXSTAzMEJoY3BUbgplMHVzY3lFZGdDeSs5a1ZEOHo
+                                    wQ0F3RUFBYU5aTUZjd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZLVTRBWFJJRmtlZFRFYVNRZUR4YnFsd1dpOHdNQlVHQTFVZEVRUU8KTU
+                                    F5Q0NtdDFZbVZ5Ym1WMFpYTXdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBRE5ML1RTVmJNZG1mZW53ck5TNgo2ZGRhRy8xS0xxZTlSRGlmRlZXMGFsMHUyTDFjQkN1Z2pVcGU0bW56elRVL2UxcmhWU
+                                    lJaa2p6N0VXWDBkc0M1CmxQSGJrUUdTajhlblAxd1lPNUJaT25OYmt2a1NDalhIc2pMQTY0QkxWbHJXajkvMDl6L1hFOHptanFjNG1pUFUKTG1pWVhZZUNSREhpSjh6N0lFQ1ZaN3VlYzBlcUpHYmhI
+                                    cFpGSTJhNTAyYmxGVzlwcld0QUhNVGg5V3Q0L1o5YgpwSmtVN1VYRUUxLyt4UUdNS25zd3I3aVRtVHp6SWMzc3ZpWS9SeTFrTjJSQ2c5Vlc4N2xwOXBOeEJhUzhMdldYCkpGZnZVV3dRMlc5YTliOCs
+                                    0S0FuR3NmYTBscU5LK3pUTmQycVNDeTNFYzZtSkd5V29tZ1l0bk1lSlNvU09aakMKMnVjPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==''', credentialsId: 'AWSEKSCluster', serverUrl: 'https://F9344790B436F4FC48A987CA9C739E4E.gr7.us-east-1.eks.amazonaws.com') {
                                         powershell 'kubectl apply -f sa-logic.yaml --context aws '
                                     }
                                     // kubeconfig(caCertificate: '''MIIDBjCCAe6gAwIBAgIBATANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwptaW5p
