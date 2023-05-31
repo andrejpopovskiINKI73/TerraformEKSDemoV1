@@ -55,7 +55,7 @@ pipeline {
                         dir('TerraformEKS') {
                             powershell "terraform ${params.Actions} --auto-approve"
                             //replace the kube config file locally with the tf output, so we can execute kubectl commands locally for the cluster
-                            powershell "terraform output -raw kubeconfig > $HOME/.kube/AWSconfig"
+                            powershell 'terraform output -raw kubeconfig > $HOME/.kube/AWSconfig'
                         }
                     }
                 }
