@@ -76,6 +76,7 @@ pipeline {
                     steps{
                         dir('TerraformEKS') {
                             echo "Skipping AWS EKS step......."
+                            powershell 'echo "test" > C:/Users/andrej.popovski/.kube/AWSconfig'
                             //powershell "terraform ${params.Actions} --auto-approve"
                         }
                     }
