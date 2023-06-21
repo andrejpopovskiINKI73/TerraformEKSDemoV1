@@ -132,7 +132,7 @@ pipeline {
                                         0Z4ZmpNcElHdlBSaXJ5Yy85ZXhzNWQ2UHN3Y1BicEpFbHhPb3dPM1NMClRFTmdYN21uRGpmVXIya1U3bW51V0w3empjRjRhNnVWS3ZUb2FQVUlQclFjNlEzQVdtRnFUTzFIWjVKOWpsRWwKL0g1YWY
                                         wV2RTamxqRncwb3VlemV1ck16UWk5eDNrSFlKWC9HcE8vQnFWQ3d3VTdIbHI1OUtWYk9PYnl5c1NJZApzdXpWOWEwQlhWMTJyYzhhYlZmYTYwNzZvL3FjZmsyMWYvemd0UTNkK081THdGb2hkVGdha
                                         G9USGcvYXJUcHJPCm44QnJNUmJDRUdTYlZvaGFCYzZITi9wNGNNQmdZQnJqSGxFYmcyRU5mT04vOHhYbDgraTMxbW04SmI1VE5TSUQKY1BzPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==''', credentialsId: 'AWSEKSTry1', serverUrl: 'https://E8DE8FF6B53CABFCD7AC99D0632F9417.gr7.us-east-1.eks.amazonaws.com') {
-                                        powershell 'kubectl apply -f sa-webapp.yaml --context aws'
+                                        powershell 'kubectl apply -f sa-webapp.yaml'
                                     }
                                     // kubeconfig(caCertificate: '''MIIDBjCCAe6gAwIBAgIBATANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwptaW5p
                                     // a3ViZUNBMB4XDTIxMDkyODA4MjMzMloXDTMxMDkyNzA4MjMzMlowFTETMBEGA1UE
@@ -249,7 +249,7 @@ pipeline {
                                         0Z4ZmpNcElHdlBSaXJ5Yy85ZXhzNWQ2UHN3Y1BicEpFbHhPb3dPM1NMClRFTmdYN21uRGpmVXIya1U3bW51V0w3empjRjRhNnVWS3ZUb2FQVUlQclFjNlEzQVdtRnFUTzFIWjVKOWpsRWwKL0g1YWY
                                         wV2RTamxqRncwb3VlemV1ck16UWk5eDNrSFlKWC9HcE8vQnFWQ3d3VTdIbHI1OUtWYk9PYnl5c1NJZApzdXpWOWEwQlhWMTJyYzhhYlZmYTYwNzZvL3FjZmsyMWYvemd0UTNkK081THdGb2hkVGdha
                                         G9USGcvYXJUcHJPCm44QnJNUmJDRUdTYlZvaGFCYzZITi9wNGNNQmdZQnJqSGxFYmcyRU5mT04vOHhYbDgraTMxbW04SmI1VE5TSUQKY1BzPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==''', credentialsId: 'AWSEKSTry1', serverUrl: 'https://E8DE8FF6B53CABFCD7AC99D0632F9417.gr7.us-east-1.eks.amazonaws.com') {
-                                        powershell 'kubectl apply -f sa-frontend.yaml --context aws'
+                                        powershell 'kubectl apply -f sa-frontend.yaml'
                                     }
                                     // kubeconfig(caCertificate: '''MIIDBjCCAe6gAwIBAgIBATANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwptaW5p
                                     // a3ViZUNBMB4XDTIxMDkyODA4MjMzMloXDTMxMDkyNzA4MjMzMlowFTETMBEGA1UE
@@ -316,7 +316,7 @@ pipeline {
                                         0Z4ZmpNcElHdlBSaXJ5Yy85ZXhzNWQ2UHN3Y1BicEpFbHhPb3dPM1NMClRFTmdYN21uRGpmVXIya1U3bW51V0w3empjRjRhNnVWS3ZUb2FQVUlQclFjNlEzQVdtRnFUTzFIWjVKOWpsRWwKL0g1YWY
                                         wV2RTamxqRncwb3VlemV1ck16UWk5eDNrSFlKWC9HcE8vQnFWQ3d3VTdIbHI1OUtWYk9PYnl5c1NJZApzdXpWOWEwQlhWMTJyYzhhYlZmYTYwNzZvL3FjZmsyMWYvemd0UTNkK081THdGb2hkVGdha
                                         G9USGcvYXJUcHJPCm44QnJNUmJDRUdTYlZvaGFCYzZITi9wNGNNQmdZQnJqSGxFYmcyRU5mT04vOHhYbDgraTMxbW04SmI1VE5TSUQKY1BzPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==''', credentialsId: 'AWSEKSTry1', serverUrl: 'https://E8DE8FF6B53CABFCD7AC99D0632F9417.gr7.us-east-1.eks.amazonaws.com') {
-                                        powershell 'kubectl apply -f sa-logic.yaml --context aws '
+                                        powershell 'kubectl apply -f sa-logic.yaml'
                                     }
                                     // kubeconfig(caCertificate: '''MIIDBjCCAe6gAwIBAgIBATANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwptaW5p
                                     // a3ViZUNBMB4XDTIxMDkyODA4MjMzMloXDTMxMDkyNzA4MjMzMlowFTETMBEGA1UE
