@@ -220,9 +220,9 @@ pipeline {
         }
         stage('Finishing') {
             steps{
-                echo "Browse the frontend app on the following link:"
                 script{
                     def final1 = powershell(script: '$a = kubectl --kubeconfig=C:\\Users\\andrej.popovski\\.kube\\config describe svc sa-frontend-lb | Select-String -Pattern "LoadBalancer Ingress:" | ForEach-Object { $_.ToString().Split(\':\')[1].Trim() }; $b = $a.Trim(); $b', returnStdout: true).trim()
+                    echo "Browse the frontend app on the following link:"
                     echo "link: ${final1}"
                 }
             }
