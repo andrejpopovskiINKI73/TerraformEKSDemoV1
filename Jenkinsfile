@@ -221,9 +221,13 @@ pipeline {
         stage('Finishing') {
             steps{
                 script{
-                    def final1 = powershell(script: '$a = kubectl --kubeconfig=C:\\Users\\andrej.popovski\\.kube\\config describe svc sa-frontend-lb | Select-String -Pattern "LoadBalancer Ingress:" | ForEach-Object { $_.ToString().Split(\':\')[1].Trim() }; $b = $a.Trim(); $b', returnStdout: true).trim()
-                    echo "Browse the frontend app on the following link:"
-                    echo "link: ${final1}"
+                    try{
+                        def final1 = powershell(script: '$a = kubectl --kubeconfig=C:\\Users\\andrej.popovski\\.kube\\config describe svc sa-frontend-lb | Select-String -Pattern "LoadBalancer Ingress:" | ForEach-Object { $_.ToString().Split(\':\')[1].Trim() }; $b = $a.Trim(); $b', returnStdout: true).trim()
+                        echo "Browse the frontend app on the following link:"
+                        echo "link: ${final1}"
+                    } catch (Exception e) {
+                        echo "Link is unavailable, please check if the config files were applied correctly to the cluster"
+                    }
                 }
             }
 
