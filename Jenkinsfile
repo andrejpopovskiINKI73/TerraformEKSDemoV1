@@ -76,8 +76,6 @@ pipeline {
                     steps{
                         dir('TerraformEKS') {
                             echo "Skipping AWS EKS step......."
-                            //powershell 'echo "test" > C:/Users/andrej.popovski/.kube/AWSconfig'
-                            //powershell "terraform ${params.Actions} --auto-approve"
                         }
                     }
                 }
@@ -135,15 +133,10 @@ pipeline {
                             steps{
                                 dir('Sentiment-analyser-app/sa-frontend/'){
                                     powershell "npm install"
-                                    script{ 
-                                        //def output1 = powershell(script: '(kubectl cluster-info | Select-String -Pattern \'[0-9]{1,3}(\\.[0-9]{1,3}){3}\').Matches.Value | Select-Object -First 1', returnStdout: true).trim()
-                                        
+                                    script{   
                                         def output1 = powershell(script: '$a = kubectl --kubeconfig=C:\\Users\\andrej.popovski\\.kube\\config describe svc sa-web-app-lb | Select-String -Pattern "LoadBalancer Ingress:" | ForEach-Object { $_.ToString().Split(\':\')[1].Trim() }; $b = $a.Trim(); $b', returnStdout: true).trim()
-                                        //def output1 = powershell 'kubectl --kubeconfig=C:\\Users\\andrej.popovski\\.kube\\config describe svc sa-web-app-lb | Select-String -Pattern "LoadBalancer Ingress:" | ForEach-Object { $_.ToString().Split(\':\')[1].Trim() }'
-                                        //def output2 = powershell(script: '$a = kubectl get service sa-web-app-lb --context aws -o json | ConvertFrom-Json; $a.spec.ports.nodePort', returnStdout: true).trim()
-                                        //def finalRes = "window.API_URL = 'http://${output1}:${output2}/sentiment'"
                                         def finalRes = "window.API_URL = 'http://${output1}/sentiment'"
-                                        echo "just printing the returned value: ${finalRes}"
+                                        echo "checking the value before writing to file: ${finalRes}"
                                         writeFile file: './public/config.js', text: finalRes
                                     }
                                     sleep(time: 15, unit: 'SECONDS')
@@ -217,11 +210,23 @@ pipeline {
                 }
                 stage('Image build completion'){
                     steps{
-                        powershell "echo The images for the apps were built and pushed to dockerhub!"
-                        powershell "echo Deplyment to k8s was successful!"
+                        echo "The images for the apps were built and pushed to dockerhub!"
+                        echo "Deplyment to k8s was successful!"
+                        //$a = kubectl describe svc sa-frontend-lb | Select-String -Pattern "LoadBalancer Ingress:" | ForEach-Object { $_.ToString().Split(':')[1].Trim() }; $b = $a.Trim(); $b
+                        
                     }
                 }
             }
+        }
+        stage('Finishing') {
+            steps{
+                echo "Browse the frontend app on the following link:"
+                script{
+                    def final1 = powershell(script: '$a = kubectl --kubeconfig=C:\\Users\\andrej.popovski\\.kube\\config describe svc sa-frontend-lb | Select-String -Pattern "LoadBalancer Ingress:" | ForEach-Object { $_.ToString().Split(\':\')[1].Trim() }; $b = $a.Trim(); $b', returnStdout: true).trim()
+                    echo "link: ${final1}"
+                }
+            }
+
         }
     }
     post {  
@@ -230,11 +235,11 @@ pipeline {
         }  
         success {
             mail bcc: '', body: '''Pipeline finished successfully!!
-            Regards,''', cc: '', from: '', replyTo: '', subject: 'SUCCESS', to: 'andrej.popovski.iw@gmail.com'
+        Regards,''', cc: '', from: '', replyTo: '', subject: 'SUCCESS', to: 'andrej.popovski.iw@gmail.com'
         }  
         failure {
             mail bcc: '', body: '''Pipeline failed, investigate issues!
-            Regards,''', cc: '', from: '', replyTo: '', subject: 'Test', to: 'andrej.popovski.iw@gmail.com'
+        Regards,''', cc: '', from: '', replyTo: '', subject: 'Test', to: 'andrej.popovski.iw@gmail.com'
         }
     }
 }
