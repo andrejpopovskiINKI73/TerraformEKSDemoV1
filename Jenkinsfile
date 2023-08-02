@@ -136,11 +136,9 @@ pipeline {
                                 dir('Sentiment-analyser-app/sa-frontend/'){
                                     powershell "npm install"
                                     script{ 
-
                                         //def output1 = powershell(script: '(kubectl cluster-info | Select-String -Pattern \'[0-9]{1,3}(\\.[0-9]{1,3}){3}\').Matches.Value | Select-Object -First 1', returnStdout: true).trim()
                                         
-                                        def output1 = powershell(script: 'kubectl --kubeconfig=C:\\Users\\andrej.popovski\\.kube\\config describe svc sa-web-app-lb | Select-String -Pattern "LoadBalancer Ingress:" | ForEach-Object { $_.ToString().Split(\':\')[1].Trim() }', returnStdout: true)
-
+                                        def output1 = powershell(script: '$a = kubectl --kubeconfig=C:\\Users\\andrej.popovski\\.kube\\config describe svc sa-web-app-lb | Select-String -Pattern "LoadBalancer Ingress:" | ForEach-Object { $_.ToString().Split(\':\')[1].Trim() }; $b = $a.Trim(); $b', returnStdout: true).trim()
                                         //def output1 = powershell 'kubectl --kubeconfig=C:\\Users\\andrej.popovski\\.kube\\config describe svc sa-web-app-lb | Select-String -Pattern "LoadBalancer Ingress:" | ForEach-Object { $_.ToString().Split(\':\')[1].Trim() }'
                                         //def output2 = powershell(script: '$a = kubectl get service sa-web-app-lb --context aws -o json | ConvertFrom-Json; $a.spec.ports.nodePort', returnStdout: true).trim()
                                         //def finalRes = "window.API_URL = 'http://${output1}:${output2}/sentiment'"
