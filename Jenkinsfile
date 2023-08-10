@@ -212,8 +212,6 @@ pipeline {
                     steps{
                         echo "The images for the apps were built and pushed to dockerhub!"
                         echo "Deplyment to k8s was successful!"
-                        //$a = kubectl describe svc sa-frontend-lb | Select-String -Pattern "LoadBalancer Ingress:" | ForEach-Object { $_.ToString().Split(':')[1].Trim() }; $b = $a.Trim(); $b
-                        
                     }
                 }
             }
