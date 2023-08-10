@@ -1,12 +1,12 @@
 # Automated Deployment Pipeline with Jenkins, Terraform, Kubernetes, and AWS
-This repository contains a Jenkinsfile that automates the deployment of an application stack to Kubernetes (k8s) using Terraform for infrastructure provisioning and Docker for containerization. AWS resources are also utilized for this deployment.
+This repository contains a Jenkinsfile that automates the deployment of an application stack to Kubernetes (k8s) using Terraform for infrastructure provisioning (AWS) and Docker for containerization.
 
 ## Prerequisites
 Before you can use the provided Jenkinsfile to deploy your application stack, make sure you have the following prerequisites in place:
 
 ### Jenkins Setup:
 
-1. Install and configure Jenkins on your target system.
+Install and configure Jenkins on your target system.
 
 - Jenkins Plugins:
 Install the necessary plugins in Jenkins:

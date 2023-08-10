@@ -136,7 +136,6 @@ pipeline {
                                     script{   
                                         def output1 = powershell(script: '$a = kubectl --kubeconfig=C:\\Users\\andrej.popovski\\.kube\\config describe svc sa-web-app-lb | Select-String -Pattern "LoadBalancer Ingress:" | ForEach-Object { $_.ToString().Split(\':\')[1].Trim() }; $b = $a.Trim(); $b', returnStdout: true).trim()
                                         def finalRes = "window.API_URL = 'http://${output1}/sentiment'"
-                                        echo "checking the value before writing to file: ${finalRes}"
                                         writeFile file: './public/config.js', text: finalRes
                                     }
                                     sleep(time: 15, unit: 'SECONDS')
@@ -233,7 +232,7 @@ pipeline {
     }
     post {  
         always {
-            echo 'Execution of the job was done'  
+            echo 'Execution of the job was done'
         }  
         success {
             mail bcc: '', body: '''Pipeline finished successfully!!
