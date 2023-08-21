@@ -23,7 +23,6 @@ aws_secret_key: AWS secret key for authentication.
 - Terraform:
 Install Terraform version Terraform-1 using the Jenkins tool configuration. Ensure the tool name matches the configuration in Jenkins.
 
-Git:
 - Ensure Git is installed and configured on the Jenkins agent.
 
 - Kubectl:
